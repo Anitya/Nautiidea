@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>Geo Social Network</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="styles/layout.css" type="text/css" />
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3959287381" type="text/javascript" charset="utf-8"></script>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="scripts/jquery-1.4.1.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.slidepanel.setup.js"></script>
+<script type="text/javascript" src="scripts/jquery.cycle.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.cycle.setup.js"></script>
+</head>
+<body>
+<div class="wrapper col0">
+  <div id="topbar">
+    <div id="slidepanel">
+      <div class="topbox">
+        <h2>User Login Guide</h2>
+        <p>Notice: No.1 ******</p>
+        <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+        <br/>
+        <h2>New User Register</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>New User Register Form</legend>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="       Register Here >>     " />
+            </p>
+          </fieldset>
+        </form>
+        
+      </div>
+          
+            
+      <div class="topbox">
+        <h2>Login Using Inside Accounts</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="teachername">Username:
+              <input type="text" name="teachername" id="teachername" value="" />
+            </label>
+            <label for="teacherpass">Password:
+              <input type="password" name="teacherpass" id="teacherpass" value="" />
+            </label>
+            <label for="teacherremember">
+              <input class="checkbox" type="checkbox" name="teacherremember" id="teacherremember" checked="checked" />
+             Remember Account</label>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="    Login    " />
+              &nbsp;
+              <input type="reset" name="teacherreset" id="teacherreset" value="  Reset  " />
+            </p>
+          </fieldset>
+        </form>
+      </div>
+
+<script>
+WB2.anyWhere(function(W){
+    W.widget.connectButton({
+        id: "wb_connect_btn",	
+        type:"2,1",
+        callback : {
+            login:function(o){	
+            	alert("login: "+o.screen_name)	
+            },	
+            logout:function(){	
+            }
+        }
+    });
+});
+</script>
+      <div class="topbox last">
+        <h2>Login Using SNS Accounts</h2>
+        <div id="wb_connect_btn"></div>
+
+					
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Pupils Login Form</legend>
+            <br />
+            <label for="pupilremember">
+              <input class="checkbox" type="checkbox" name="pupilremember" id="pupilremember" checked="checked" />
+              Remember Account</label>
+          </fieldset>
+        </form>
+      </div>
+      <br class="clear" />
+    </div>
+    <div id="loginpanel">
+      <ul>
+        <li class="left">Login here &raquo;</li>
+        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Open panel</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h2><a href="#">Spatio-temporal Data Visualization, Analysis and Mining (STDVAM) Group</a></h2>
+      <p>Shenzhen Key Laboratory of Spatial Smart Sensing and Services, Shenzhen University (China)</p>
+    </div>
+    <div id="topnav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="papers.html">Papers</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li class="active"><a href="contacts.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col2">
+  <div id="breadcrumb">
+    <ul>
+      <li class="first">You Are Here</li>
+      <li>&#187;</li>
+      <li><a href="index.html">Home</a></li>
+      <li>&#187;</li>
+      <li class="current"><a href="contacts.html">Contact Us</a></li>
+    </ul>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+
+<div class="wrapper col3">
+  <div id="container">
+	    <h1>Contact US</h1>
+    <ul>
+      <li>State Key Laboratory of Information Engineering in Surveying, Mapping, and Remote Sensing, Wuhan University, P.R. China (LIMARS)</li>
+      <li>Engineering Research Center for Spatio-Temporal Data Smart Acquisition and Application, Ministry of Education of China (STSA)</li>
+      <li>Tel: +86-027-88888888</li>
+      <li>Fax: +86-027-88888888</li>
+      <li>Email:changx@whu.edu.cn</li>
+      <li>Address:129 Luoyu Road, Wuhan 430079, Hubei, P.R. China</li>
+    </ul>
+    
+    <h2>We Are On SINA Weibo</h2>
+      <wb:bulkfollow uids="1261289604,5412474944" type="2" width="260" count="5" color="C2D9F2,FFFFFF,0082CB,666666" titlebar="n" info="n" verified="n" ></wb:bulkfollow>
+    <!--<ul>-->
+      <!--<li>Prof. Shih-Lung Shaw: <a href="chenbiyu.html"></a></li>-->
+      				<!--<div id="wb_follow_btn_shawsl" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
+					<!--<script>-->
+					<!--WB2.anyWhere(function(W){-->
+						<!--W.widget.followButton({-->
+							<!--'nick_name': '灏у瓱_M',	//鐢ㄦ埛鏄电О-->
+							<!--'id': "wb_follow_btn_shawsl"-->
+						<!--});-->
+					<!--});-->
+					<!--</script>-->
+      <!--<li>Prof. Qingquan Li: <a href="chenbiyu.html"></a></li>-->
+      				<!--<div id="wb_follow_btn_liqq" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
+					<!--<script>-->
+					<!--WB2.anyWhere(function(W){-->
+						<!--W.widget.followButton({-->
+							<!--'nick_name': '鏉庢竻娉�2012',	//鐢ㄦ埛鏄电О-->
+							<!--'id': "wb_follow_btn_liqq"-->
+						<!--});-->
+					<!--});-->
+					<!--</script>-->
+      <!--<li>Dr. Bi Yu Chen: <a href="chenbiyu.html"></a></li>-->
+      				<!--<div id="wb_follow_btn_chenby" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
+					<!--<script>-->
+					<!--WB2.anyWhere(function(W){-->
+						<!--W.widget.followButton({-->
+							<!--'nick_name': '灏у瓱_M',	//鐢ㄦ埛鏄电О-->
+							<!--'id': "wb_follow_btn_chenby"-->
+						<!--});-->
+					<!--});-->
+					<!--</script>-->
+      <!--<li>Ph.D. Xiaomeng Chang: <a href="chenbiyu.html"></a>-->
+				<!---->
+					<!--<div id="wb_follow_btn_changxm" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
+					<!--<script>-->
+					<!--WB2.anyWhere(function(W){-->
+						<!--W.widget.followButton({-->
+							<!--'nick_name': '灏у瓱_M',	//鐢ㄦ埛鏄电О-->
+							<!--'id': "wb_follow_btn_changxm"-->
+						<!--});-->
+					<!--});-->
+					<!--</script>-->
+      <!--</li>-->
+
+      <!---->
+      <!--<li>Ph.D. Zhaoyang Shi: <a href="chenbiyu.html"></a></li>-->
+      				<!--<div id="wb_follow_btn_shizy" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
+					<!--<script>-->
+					<!--WB2.anyWhere(function(W){-->
+						<!--W.widget.followButton({-->
+							<!--'nick_name': '鍗辨満璇綍',	//鐢ㄦ埛鏄电О-->
+							<!--'id': "wb_follow_btn_shizy"-->
+						<!--});-->
+					<!--});-->
+					<!--</script>-->
+      <!--<li>Ph.D. Hui Yuan: <a href="chenbiyu.html"></a></li>-->
+            		<!--<div id="wb_follow_btn_yuanh" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
+					<!--<script>-->
+					<!--WB2.anyWhere(function(W){-->
+						<!--W.widget.followButton({-->
+							<!--'nick_name': '灏у瓱_M',	//鐢ㄦ埛鏄电О-->
+							<!--'id': "wb_follow_btn_yuanh"-->
+						<!--});-->
+					<!--});-->
+					<!--</script>-->
+      <!--<li>M.Sc Guozhen Lu: <a href="chenbiyu.html"></a></li>-->
+            		<!--<div id="wb_follow_btn_lugz" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
+					<!--<script>-->
+					<!--WB2.anyWhere(function(W){-->
+						<!--W.widget.followButton({-->
+							<!--'nick_name': '鐏靛瓙zzz',	//鐢ㄦ埛鏄电О-->
+							<!--'id': "wb_follow_btn_lugz"-->
+						<!--});-->
+					<!--});-->
+					<!--</script>-->
+
+    <!--</ul>  -->
+    
+     <div id="comments">
+        <h2>Comments</h2>
+        <ul class="commentlist">
+          <li class="comment_odd">
+            <div class="author"><img class="avatar" src="images/demo/avatar.gif" width="32" height="32" alt="" /><span class="name"><a href="#">A Name</a></span> <span class="wrote">wrote:</span></div>
+            <div class="submitdate"><a href="#">August 4, 2012 at 8:35 am</a></div>
+            <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+          </li>
+          <li class="comment_even">
+            <div class="author"><img class="avatar" src="images/demo/avatar.gif" width="32" height="32" alt="" /><span class="name"><a href="#">A Name</a></span> <span class="wrote">wrote:</span></div>
+            <div class="submitdate"><a href="#">August 4, 2012 at 8:35 am</a></div>
+            <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+          </li>
+          <li class="comment_odd">
+            <div class="author"><img class="avatar" src="images/demo/avatar.gif" width="32" height="32" alt="" /><span class="name"><a href="#">A Name</a></span> <span class="wrote">wrote:</span></div>
+            <div class="submitdate"><a href="#">August 4, 2012 at 8:35 am</a></div>
+            <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+          </li>
+        </ul>
+      </div>
+      
+      <h2>Write A Comment</h2>
+      <div id="respond">
+        <form action="#" method="post">
+          <p>
+            <input type="text" name="name" id="name" value="" size="22" />
+            <label for="name"><small>Name (required)</small></label>
+          </p>
+          <p>
+            <input type="text" name="email" id="email" value="" size="22" />
+            <label for="email"><small>Mail (required)</small></label>
+          </p>
+          <p>
+            <textarea name="comment" id="comment" cols="100%" rows="10"></textarea>
+            <label for="comment" style="display:none;"><small>Comment (required)</small></label>
+          </p>
+          <p>
+            <input name="submit" type="submit" id="submit" value="Submit Form" />
+            &nbsp;
+            <input name="reset" type="reset" id="reset" tabindex="5" value="Reset Form" />
+          </p>
+        </form>
+      </div>
+    
+    
+  </div>
+ 
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="footer">
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox last">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col5">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2012 - All Rights Reserved - <a href="#">Wuhan University</a></p>
+    <p class="fl_right"><a href="#" title=""></a></p>
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>

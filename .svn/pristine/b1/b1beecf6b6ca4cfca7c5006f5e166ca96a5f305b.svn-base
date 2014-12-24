@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>Geo Social Network</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="styles/layout.css" type="text/css" />
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3959287381" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="scripts/jquery-1.4.1.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.slidepanel.setup.js"></script>
+<script type="text/javascript" src="scripts/jquery.cycle.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.cycle.setup.js"></script>
+</head>
+<body>
+
+<div class="wrapper col0">
+  <div id="topbar">
+    <div id="slidepanel">
+      <div class="topbox">
+        <h2>User Login Guide</h2>
+        <p>Notice: No.1 ******</p>
+        <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+        <br/>
+        <h2>New User Register</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>New User Rejister Form</legend>
+            <label for="pupilname">
+              <input type="button" name="pupilname" id="pupilname" value="鏂扮敤鎴锋敞鍐�" />
+            </label>
+          </fieldset>
+        </form>
+        
+      </div>
+          
+            
+      <div class="topbox">
+        <h2>Login Using Inside Accounts</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="teachername">Username:
+              <input type="text" name="teachername" id="teachername" value="" />
+            </label>
+            <label for="teacherpass">Password:
+              <input type="password" name="teacherpass" id="teacherpass" value="" />
+            </label>
+            <label for="teacherremember">
+              <input class="checkbox" type="checkbox" name="teacherremember" id="teacherremember" checked="checked" />
+             Remember Account</label>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="    Login    " />
+              &nbsp;
+              <input type="reset" name="teacherreset" id="teacherreset" value="  Reset  " />
+            </p>
+          </fieldset>
+        </form>
+      </div>
+<script>
+    WB2.anyWhere(function(W){
+    W.widget.connectButton({
+        id: "wb_connect_btn",	
+        type:"2,1",
+        callback : {
+            login:function(o){	
+            	alert("login: "+o.screen_name)	
+            },	
+            logout:function(){	
+            }
+        }
+    });
+});
+</script>
+      <div class="topbox last">
+        <h2>Login Using SNS Accounts</h2>
+        <div id="wb_connect_btn"></div>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Pupils Login Form</legend>
+            <label for="pupilremember">
+              <input class="checkbox" type="checkbox" name="pupilremember" id="pupilremember" checked="checked" />
+              Remember Account</label>
+          </fieldset>
+        </form>
+      </div>
+      <br class="clear" />
+    </div>
+    <div id="loginpanel">
+      <ul>
+        <li class="left">Login here &raquo;</li>
+        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Open panel</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h2><a href="#">Spatio-temporal Data Visualization, Analysis and Mining (STDVAM) Group</a></h2>
+      <p>Shenzhen Key Laboratory of Spatial Smart Sensing and Services, Shenzhen University (China)</p>
+    </div>
+    <div id="topnav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="active"><a href="research.html">Research</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="papers.html">Papers</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contacts.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col2">
+  <div id="breadcrumb">
+    <ul>
+      <li class="first">You Are Here</li>
+      <li>&#187;</li>
+      <li><a href="index.html">Home</a></li>
+      <li>&#187;</li>
+      <li class="current"><a href="research銆俬tml">Research</a></li>
+    </ul>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col3">
+  <div id="container">
+    <h1>GIS-T </h1>
+    <p>Uttellus pretium intesque volutpat malesuada curabitur convallisis non dui elit fring. Tortorconvallis felis pellus curabitur in lorem tur in et nisse curabitudin. Mollisfelit portis a nibh lacinia temper tincidunt tincidunt sagittis males sed. Sedplatea sed ut faucibus maurien sed vestas elis aliquam ulla nam. Aeneanelit fauctortor et sed netuer malesuada id consequat cras vitae non.</p>
+    <ul>
+      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      <li>Etiam vel sapien et est adipiscing commodo.</li>
+      <li>Duis pharetra eleifend sapien, id faucibus dolor rutrum et.</li>
+      <li>Donec et dui dolor, in lacinia leo.</li>
+      <li>Mauris posuere tellus ac purus adipiscing dapibus.</li>
+    </ul>
+    <wb:publish button_type="gray" default_text="GIS-T" default_image="http://ww4.sinaimg.cn/bmiddle/3ec33750jw1dnsuig10lpj.jpg" button_text="Share"></wb:publish>
+    <p></p>
+    
+    
+    <h2>Spatio-tempral GIS </h2>
+    <p>Uttellus pretium intesque volutpat malesuada curabitur convallisis non dui elit fring. Tortorconvallis felis pellus curabitur in lorem tur in et nisse curabitudin. Mollisfelit portis a nibh lacinia temper tincidunt tincidunt sagittis males sed. Sedplatea sed ut faucibus maurien sed vestas elis aliquam ulla nam. Aeneanelit fauctortor et sed netuer malesuada id consequat cras vitae non.</p>
+    <ul>
+      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      <li>Etiam vel sapien et est adipiscing commodo.</li>
+      <li>Duis pharetra eleifend sapien, id faucibus dolor rutrum et.</li>
+      <li>Donec et dui dolor, in lacinia leo.</li>
+      <li>Mauris posuere tellus ac purus adipiscing dapibus.</li>
+    </ul>
+    <wb:publish button_type="gray" default_text="Spatio-tempral GIS" default_image="http://ww4.sinaimg.cn/bmiddle/3ec33750jw1dnsuig10lpj.jpg" button_text="Share"></wb:publish>
+    <p></p>
+    
+    </br>
+    <h3>Social Networking </h3>
+    <p>Uttellus pretium intesque volutpat malesuada curabitur convallisis non dui elit fring. Tortorconvallis felis pellus curabitur in lorem tur in et nisse curabitudin. Mollisfelit portis a nibh lacinia temper tincidunt tincidunt sagittis males sed. Sedplatea sed ut faucibus maurien sed vestas elis aliquam ulla nam. Aeneanelit fauctortor et sed netuer malesuada id consequat cras vitae non.</p>
+    <ul>
+      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      <li>Etiam vel sapien et est adipiscing commodo.</li>
+      <li>Duis pharetra eleifend sapien, id faucibus dolor rutrum et.</li>
+      <li>Donec et dui dolor, in lacinia leo.</li>
+      <li>Mauris posuere tellus ac purus adipiscing dapibus.</li>
+    </ul>
+    <wb:publish button_type="gray" default_text="Social Networking" default_image="http://ww4.sinaimg.cn/bmiddle/3ec33750jw1dnsuig10lpj.jpg" button_text="Share"></wb:publish>
+    <p></p>
+    
+    </br>
+    <h4>Big Data Visualization </h4>
+    <p>Uttellus pretium intesque volutpat malesuada curabitur convallisis non dui elit fring. Tortorconvallis felis pellus curabitur in lorem tur in et nisse curabitudin. Mollisfelit portis a nibh lacinia temper tincidunt tincidunt sagittis males sed. Sedplatea sed ut faucibus maurien sed vestas elis aliquam ulla nam. Aeneanelit fauctortor et sed netuer malesuada id consequat cras vitae non.</p>
+    <ul>
+      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      <li>Etiam vel sapien et est adipiscing commodo.</li>
+      <li>Duis pharetra eleifend sapien, id faucibus dolor rutrum et.</li>
+      <li>Donec et dui dolor, in lacinia leo.</li>
+      <li>Mauris posuere tellus ac purus adipiscing dapibus.</li>
+    </ul>
+    <wb:publish button_type="gray" default_text="Big Data Visualization" default_image="http://ww4.sinaimg.cn/bmiddle/3ec33750jw1dnsuig10lpj.jpg" button_text="Share"></wb:publish>
+    <p></p>
+ 
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="footer">
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox last">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col5">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2010 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a href="http://www.88web.org/" title="鍏嶈垂缃戦〉妯℃澘">88web</a></p>
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>

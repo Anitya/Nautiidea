@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr" xmlns:wb="http://open.weibo.com/wb">
+<head profile="http://gmpg.org/xfn/11">
+<title>Geo Social Network</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="../styles/layout.css" type="text/css" />
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3959287381&debug=true" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../scripts/jquery-1.4.1.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.slidepanel.setup.js"></script>
+<script type="text/javascript" src="../scripts/jquery.cycle.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.cycle.setup.js"></script>
+</head>
+<body>
+<div class="wrapper col0">
+  <div id="topbar">
+    <div id="slidepanel">
+      <div class="topbox">
+        <h2>User Login Guide</h2>
+        <p>Notice: No.1 ******</p>
+        <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+        <br/>
+        <h2>New User Register</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>New User Register Form</legend>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="       Register Here >>     " />
+            </p>
+          </fieldset>
+        </form>
+        
+      </div>
+          
+            
+      <div class="topbox">
+        <h2>Login Using Inside Accounts</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="teachername">Username:
+              <input type="text" name="teachername" id="teachername" value="" />
+            </label>
+            <label for="teacherpass">Password:
+              <input type="password" name="teacherpass" id="teacherpass" value="" />
+            </label>
+            <label for="teacherremember">
+              <input class="checkbox" type="checkbox" name="teacherremember" id="teacherremember" checked="checked" />
+             Remember Account</label>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="    Login    " />
+              &nbsp;
+              <input type="reset" name="teacherreset" id="teacherreset" value="  Reset  " />
+            </p>
+          </fieldset>
+        </form>
+      </div>
+
+<script>
+WB2.anyWhere(function(W){
+    W.widget.connectButton({
+        id: "wb_connect_btn",	
+        type:"2,1",
+        callback : {
+            login:function(o){	
+            	alert("login: "+o.screen_name)	
+            },	
+            logout:function(){	
+            }
+        }
+    });
+});
+</script>
+      <div class="topbox last">
+        <h2>Login Using SNS Accounts</h2>
+        <div id="wb_connect_btn"></div>
+
+					
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Pupils Login Form</legend>
+            <br />
+            <label for="pupilremember">
+              <input class="checkbox" type="checkbox" name="pupilremember" id="pupilremember" checked="checked" />
+              Remember Account</label>
+          </fieldset>
+        </form>
+      </div>
+      <br class="clear" />
+    </div>
+    <div id="loginpanel">
+      <ul>
+        <li class="left">Login here &raquo;</li>
+        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Open panel</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h2><a href="#">Spatio-temporal Data Visualization, Analysis and Mining (STDVAM) Group</a></h2>
+      <p>Shenzhen Key Laboratory of Spatial Smart Sensing and Services, Shenzhen University (China)</p>
+    </div>
+    <div id="topnav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../team.html">Research</a></li>
+        <li class="active"><a href="../team.html">Team</a></li>
+        <li><a href="../papers.html">Papers</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contacts.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col2">
+  <div id="breadcrumb">
+    <ul>
+      <li class="first">You Are Here</li>
+      <li>&#187;</li>
+      <li><a href="../index.html">Home</a></li>
+      <li>&#187;</li>
+      <li><a href="../team.html">Team</a></li>
+      <li>&#187;</li>
+      <li class="current"><a href="caorui.html">Rui Cao (Ray)</a></li>
+    </ul>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col3">
+  <div id="container">
+    <h1>Cao, Rui (Ray)</h1>
+    <img class="imgr" src="../images/photos/caorui.jpg" alt="Ray" height="160" />
+    <p>He received the B.S. degree in Geomatics Engineering from the School of Geodesy and Geomatics, Wuhan University, China, in 2013.</p>
+	<p>He is working toward a M.S. degree in Geodesy and Survey Engineering from the School of Geodesy and Geomatics, Wuhan University, China.</p>
+	<p>He is currently working as a cooperation researcher in Shenzhen Key Laboratory of Spatial Smart Sensing and Services, Shenzhen University, China.</p>
+    <br /><br /><br />
+
+    
+    <h2>Interests</h2>
+    <ul>
+      <li>Spatio-Temporal GIS</li>
+      <br />
+      <li>Intelligent transportation system (ITS)</li>
+      <br />
+      <li>Data visualization</li>
+      <br />
+    </ul>
+    
+    <!--<h3>Papers</h3>-->
+    <!--<ul>-->
+      <!--<li>Chang, X., Chen, B.Y., Li, Q., Cui, X., Tang, L. and Liu, C. (2012). Estimating real-time traffic carbon dioxide emissions based on intelligent transportation system technologies. IEEE Transactions on Intelligent Transportation Systems. In press. DOI: 10.1109/TITS.2012.2219529. (SCI, 2011 Impact factor: 3.452)</li>-->
+      <!--<br />-->
+    <!--</ul>-->
+    <!---->
+    <!--<h4>Projects</h4>-->
+    <!--<ul>-->
+      <!--<li>Participant: **. Sub-Project 3-3 of "973" Project .  **973妞ゅ湱娲扮拠楣冾暯3鐎涙劒绗撴０锟�3 (閸欏倷绗� 2008.7-2010.3)</li>-->
+      <!--<br />-->
+    <!--</ul>-->
+    
+    <h5>Honors</h5>
+    <ul>
+      <li>Won an award for outstanding graduates at Wuhan University in 2013.</li>
+      <br />
+    </ul>
+
+    <h6>Contact Me</h6>
+    <ul>
+      <li>Email: <a href="mailto:icaorui@foxmail.com">icaorui@foxmail.com</a></li>
+      <br />
+      <!--<li>Address:	</li>-->
+      <!--<br />-->
+
+      <li>He is on Sina Weibo: <a href="http://weibo.com/giseray">http://weibo.com/giseray</a></li>
+    	           <!--<div id="wb_follow_btn" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
+        <!--<div id="wb_follow_btn"></div>-->
+					<!--<script>-->
+					<!--WB2.anyWhere(function(W){-->
+						<!--W.widget.followButton({-->
+							<!--'nick_name': 'giseray',-->
+							<!--'id': "wb_follow_btn",-->
+                            <!--'show_head' : true, //是否显示头像-->
+                            <!--'show_name' : true, //是否显示名称-->
+                            <!--'show_cancel': true //是否显示取消关注按钮-->
+						<!--});-->
+					<!--});-->
+					<!--</script>-->
+        <!--<wb:follow-button uid="5412474944" type="red_3" width="100%" height="24" ></wb:follow-button>-->
+        <wb:follow-button uid="5412474944" type="red_1" width="67" height="24" ></wb:follow-button>
+        <!--<wb:follow-button uid="5412474944" type="red_4" >关注按钮</wb:follow-button>-->
+    </ul>
+    <p></p>
+    
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="footer">
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox last">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col5">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2012 - All Rights Reserved - <a href="#">Wuhan University</a></p>
+    <p class="fl_right"><a href="#" title=""></a></p>
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>

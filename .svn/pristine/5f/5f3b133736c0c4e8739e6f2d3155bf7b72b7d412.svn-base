@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>Geo Social Network</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="../styles/layout.css" type="text/css" />
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3959287381" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../scripts/jquery-1.4.1.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.slidepanel.setup.js"></script>
+<script type="text/javascript" src="../scripts/jquery.cycle.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.cycle.setup.js"></script>
+</head>
+<body>
+<div class="wrapper col0">
+  <div id="topbar">
+    <div id="slidepanel">
+      <div class="topbox">
+        <h2>User Login Guide</h2>
+        <p>Notice: No.1 ******</p>
+        <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+        <br/>
+        <h2>New User Register</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>New User Register Form</legend>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="       Register Here >>     " />
+            </p>
+          </fieldset>
+        </form>
+        
+      </div>
+          
+            
+      <div class="topbox">
+        <h2>Login Using Inside Accounts</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="teachername">Username:
+              <input type="text" name="teachername" id="teachername" value="" />
+            </label>
+            <label for="teacherpass">Password:
+              <input type="password" name="teacherpass" id="teacherpass" value="" />
+            </label>
+            <label for="teacherremember">
+              <input class="checkbox" type="checkbox" name="teacherremember" id="teacherremember" checked="checked" />
+             Remember Account</label>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="    Login    " />
+              &nbsp;
+              <input type="reset" name="teacherreset" id="teacherreset" value="  Reset  " />
+            </p>
+          </fieldset>
+        </form>
+      </div>
+
+<script>
+WB2.anyWhere(function(W){
+    W.widget.connectButton({
+        id: "wb_connect_btn",	
+        type:"2,1",
+        callback : {
+            login:function(o){	
+            	alert("login: "+o.screen_name)	
+            },	
+            logout:function(){	
+            }
+        }
+    });
+});
+</script>
+      <div class="topbox last">
+        <h2>Login Using SNS Accounts</h2>
+        <div id="wb_connect_btn"></div>
+
+					
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Pupils Login Form</legend>
+            <br />
+            <label for="pupilremember">
+              <input class="checkbox" type="checkbox" name="pupilremember" id="pupilremember" checked="checked" />
+              Remember Account</label>
+          </fieldset>
+        </form>
+      </div>
+      <br class="clear" />
+    </div>
+    <div id="loginpanel">
+      <ul>
+        <li class="left">Login here &raquo;</li>
+        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Open panel</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h2><a href="#">Spatio-temporal Data Visualization, Analysis and Mining (STDVAM) Group</a></h2>
+      <p>Shenzhen Key Laboratory of Spatial Smart Sensing and Services, Shenzhen University (China)</p>
+    </div>
+    <div id="topnav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../team.html">Research</a></li>
+        <li class="active"><a href="../team.html">Team</a></li>
+        <li><a href="../papers.html">Papers</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contacts.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col2">
+  <div id="breadcrumb">
+    <ul>
+      <li class="first">You Are Here</li>
+      <li>&#187;</li>
+      <li><a href="../index.html">Home</a></li>
+      <li>&#187;</li>
+      <li><a href="../team.html">Team</a></li>
+      <li>&#187;</li>
+      <li class="current"><a href="people/changxiaomeng.html">Dr. Xiaomeng Chang</a></li>
+    </ul>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col3">
+  <div id="container">
+    <h1>Dr. Xiaomeng Chang</h1>
+    <img class="imgr" src="../images/photos/changxiaomeng_large.jpg" alt="" width="300" height="160" />
+    <p>He received the B.S. degree and M.S. degree in geographic information system from the Institute of Remote Sensing, Nanjing University of Information Science and Technology (former Nanjing Institute of Meteorology), Nanjing, China, and the State Key Laboratory for Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University, Wuhan, China, in 2008 and 2010 respectively.</p>
+	<p>He is currently working toward a Ph.D. degree in photography and remote sensing from the State Key Laboratory for Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University, Wuhan, China</p>
+	<p>From Oct. 2010 to Nov. 2011, he was a visiting scholar for cooperation research with the Computational Sciences & Engineering Division, the Oak Ridge National Laboratory (ORNL), TN, USA and the Department of Geography, the University of Tennessee, Knoxville (UTK), TN, USA.</p>
+    <br /> 
+    
+    
+    <h2>Interests</h2>
+    <ul>
+      <li>Spatio-temporal Data Visualization, Analysis and Mining</li>
+      <br />
+      <li>Geographic Social Network Analysis</li>
+      <br />
+      <li>Intelligent transportation system (ITS) and Environment</li>
+      <br />
+      <li>Scientific data visiualization</li>
+      <br />      
+    </ul>
+    
+    <h3>Papers</h3>
+    <ul>
+      <li>Chang, X., Chen, B.Y., Li, Q., Cui, X., Tang, L. and Liu, C. (2012). Estimating real-time traffic carbon dioxide emissions based on intelligent transportation system technologies. IEEE Transactions on Intelligent Transportation Systems. In press. DOI: 10.1109/TITS.2012.2219529. (SCI, 2011 Impact factor: 3.452)</li>
+      <br />
+      <li>Cui, X., Liu, C. and Chang, X. Population Impact Visual Analytics for Man-made Disaster (2012). 2012 AAG Annual Meeting, New York (US), Feb. 24-28, 2012. </li>
+      <br />
+      <li>Li, Q., Chang, X. (Corresponding Author), Cui, X., Li, Z., Tang, L. and Liu, C. (2011). A Road-Segment-Based Vehicle Emission Model for Real-Time Traffic Greenhouse Gas Estimation. Transportation Research Board 90th Annual Meeting, Washington DC (US), Jan. 23-27, 2011.</li>      
+      <br />
+      <li>Tang, L., Chang, X., Li, Q. and Shaw, SL. (2011). Public Travel Route Optimization Based on Ant Colony Optimization Algorithm and Taxi GPS Data. China Journal of Highway and Transport 24(2): 89-95,126, ISBN:1001-7372(2001)02-0089-07. (EI, Chinese Version)
+鍞愮倝浜紝甯告檽鐚涳紝鏉庢竻娉�, Shaw SL. 鍩轰簬铓佺兢浼樺寲绠楁硶涓庡嚭绉熻溅GPS 鏁版嵁鐨勫叕浼楀嚭琛岃矾寰勪紭鍖朳J]. 涓浗鍏矾瀛︽姤, 2010, 24(2): 89-95,126.</li>
+      <br />
+      <li>Tang, L., Li, Q., Chang, X. (Corresponding Author), Shaw, S.L. and Zhao Z. (2010). Modeling of taxi drivers鈥� experience for routing applications, Science China Technological Sciences 53(1): 44-51.DOI: 10.1007/s11431-010-3201-7. (SCI, 2011 Impact factor: 0.93)</li>
+      <br />
+      <li>Tang, L., Chang, X. and Li, Q. (2010). The Knowledge Modeling and Route Planning Based on Taxi' Experience, Acta Geodaetica et Cartographica Sinica 39(4):404-409, ISBN: 1001-1595(2010)04-0404-06. (EI, Chinese Version)
+鍞愮倝浜紝甯告檽鐚涳紝鏉庢竻娉�. 鍑虹杞︾粡楠岀煡璇嗗缓妯′笌璺緞瑙勫垝绠楁硶[J]. 娴嬬粯瀛︽姤, 2010, 39(4):404-409.</li>
+	  <br />
+	  <li>Tang, L., Li, Q., Xu, F. and Chang, X. (2009). One new method for Road Data Shape Change Detection. Proc. of SPIE Vol. 7492鈥擨SSA 2009: International Symposium on Spatial Analysis, Spatial-Temporal Data Modeling, and Data Mining, 7492 (3), ISBN 978-0-8194-7803-0; 0-8194-7803-2. (EI)</li>
+    </ul>
+    
+    <h4>Projects</h4>
+    <ul>
+      <li>Principal Investigator: Urban traffic carbon dioxide emission models and spatiotemporal distribution analysis. National Natural Science Foundation of China, (2010.1-2012.12)
+鍥藉鑷劧绉戝鍩洪噾闈笂椤圭洰, 鍩庡競閬撹矾浜ら�欳O2鎺掓斁妯″瀷涓庢椂绌哄垎甯� (鏍稿績鎴愬憳2010.1-2012.12).</li>
+      <br />
+      <li>Principal Investigator: Global Population Dynamic Visualization system (GPDV), Cooperated with the Computational Sciences & Engineering Division, Oak Ridge National Laboratory (ORNL). (2010.10-2011.11 in US)</li>
+      <br />
+      <li>Participant: **. Sub-Project 3-3 of "973" Project .  **973椤圭洰璇鹃3瀛愪笓棰�3 (鍙備笌 2008.7-2010.3)</li>
+      <br />
+    </ul>
+    
+    <h5>Hornors</h5>
+    <ul>
+      <li>Won the government scholarship from China Scholarship Council (CSC), the Ministry of Education, China in 2010-2011 season.</li>
+      <br />
+      <li>Received 2 times of 2nd class scholarship for full-time graduate degrees at Wuhan University in 2008-2009 and 2010-2011 seasons.</li>
+      <br />
+      <li>Won an award for outstanding graduates at Nanjing University of Information Science and Technology in 2008.</li>
+      <br />
+      <li>Received 6 times of 2nd class scholarship for full-time undergraduate degrees at Nanjing University of Information Science and Technology from 2004 to 2008.</li>     
+	  <br />    
+    </ul>
+    <h6>Contact Me</h6>
+    <ul>
+      <li>Email: 	<a href="mailto:changx@whu.edu.cn">changx@whu.edu.cn;</a> or  <a href="mailto:changxiaomeng@gmail.com">changxiaomeng@gmail.com;</a></li>
+      <br />
+      <li>Address:	</li>
+      <br />
+      <li>姝︽眽澶у娴嬬粯閬ユ劅淇℃伅鍥藉閲嶇偣瀹為獙瀹�</li>
+      <li>State Key Laboratory for Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University,</li>
+      <li>鏃剁┖鏁版嵁鏅鸿兘鑾峰彇鎶�鏈笌搴旂敤鏁欒偛閮ㄥ伐绋嬬爺绌朵腑蹇�</li>
+      <li>Engineering Research Center for Spatio-Temporal Data Smart Aquisition and Application, Ministry of Education of China,</li>
+      <li>婀栧寳鐪佹姹夊競鐝炵憸璺�129鍙凤紝430079</li>
+      <li>129, Luoyu Road, Wuhan, Hubei, P.R.China, 430079 </li>
+      <br />
+      
+      <li>鏃剁┖淇℃伅鏅鸿兘鎰熺煡涓庢湇鍔℃繁鍦冲競閲嶇偣瀹為獙瀹�</li>
+      <li>Shenzhen Key Laboratory of Spatial-temporal Smart Sensing and Services, Shenzhen University,</li>
+      <li>骞夸笢鐪佹繁鍦冲競鍗楀北鍖哄崡娴峰ぇ閬�3688鍙风鎶�妤煎崄鍥涙ゼ锛�518060</li>
+      <li>3688, Nanhai Road, Shenzhen, Guangdong, P.R.China, 518060</li>
+      
+      
+	  <br />   
+      <li>He is on Sina Weibo: <a href="http://weibo.com/xiaomengchang">http://weibo.com/xiaomengchang</a> </li>
+    	           <div id="wb_follow_btn" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>
+					<script>
+					WB2.anyWhere(function(W){
+						W.widget.followButton({
+							'nick_name': '灏у瓱_M',	//鐢ㄦ埛鏄电О
+							'id': "wb_follow_btn"
+						});
+					});
+					</script>
+    </ul>
+    <p></p>
+    
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="footer">
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <div class="footbox last">
+      <h2>Lacus interdum</h2>
+      <ul>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li><a href="#">Praesent et eros</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+        <li><a href="#">Suspendisse in neque</a></li>
+        <li class="last"><a href="#">Praesent et eros</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col5">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2012 - All Rights Reserved - <a href="#">Wuhan University</a></p>
+    <p class="fl_right"><a href="#" title=""></a></p>
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>
