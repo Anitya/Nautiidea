@@ -1,0 +1,2289 @@
+<!DOCTYPE html">
+
+
+<html>
+<head>
+
+    <title> ChinaMap</title>    
+
+<script type="text/javascript">
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};    
+</script>
+
+
+<link rel="stylesheet" type="text/css" href="styles/ext-all.css" />
+<script type="text/javascript" src="scripts/ext-base.js"></script>
+<script type="text/javascript" src="scripts/ext-all.js"></script>
+
+<script type="text/javascript">
+  Ext.Ajax.defaultHeaders = { 'X-CSRFToken': 'DRSf53TCqZuW2I3fVFkRzRTxnuqD9wle' };
+  Ext.BLANK_IMAGE_URL = "images/s.gif";
+</script>
+
+<script src="scripts/ux.js"></script>
+<script src="scripts/GeoNode.js"></script>
+
+<link rel="stylesheet" type="text/css" href="styles/style.css" />
+<script src="scripts/OpenLayers.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/geoext-all.css" />
+<script src="scripts/GeoExt.js"></script>
+<link rel="stylesheet" href="styles/all.css" />
+<script src="scripts/gxp.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/geoexplorer.css" />
+<!--[if IE]><link rel="stylesheet" type="text/css" href="/site_media/static/theme/app/ie.css"/><![endif]-->
+<script src="scripts/GeoExplorer.js"></script>
+<script type="text/javascript">
+OpenLayers.ImgPath = "images/";
+var nicEditIconsPath = "images/nicEditorIcons.gif"
+
+gxp.plugins.Styler.prototype.enableActionIfAvailable  = function(url) {
+    Ext.Ajax.request({
+        method: "POST",
+        url:"/data/" + this.target.selectedLayer.getLayer().params.LAYERS + "/ajax-edit-check",
+        callback: function(options, success, response) {
+            this.launchAction.setDisabled(response.status !== 200);
+        },
+        scope: this
+    });
+};
+
+
+gxp.WMSStylesDialog.prototype.createGeoServerStylerConfig = function (layerRecord, url) {
+    var layer = layerRecord.getLayer();
+    if (!url) {
+        url = layerRecord.get("restUrl");
+    }
+    if (!url) {
+        url = layer.url.split("?").shift().replace(/\/(wms|ows)\/?$/, "/rest");
+    }
+    return {
+        xtype:"gxp_wmsstylesdialog",
+        layerRecord:layerRecord,
+        classifyEnabled: true,
+        plugins:[
+            {
+                ptype:"gxp_geoserverstylewriter",
+                baseUrl:url
+            }
+        ],
+        listeners:{
+            "styleselected":function (cmp, style) {
+                layer.mergeNewParams({
+                    styles:style
+                });
+            },
+            "modified":function (cmp, style) {
+                cmp.saveStyles();
+            },
+            "saved":function (cmp, style) {
+                layer.mergeNewParams({
+                    _olSalt:Math.random(),
+                    styles:style
+                });
+            },
+            scope:this
+        }
+    };
+}
+
+gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
+    var config = gxp.WMSStylesDialog.createGeoServerStylerConfig(
+            this.layerRecord, url
+    );
+    if (this.rasterStyling === true) {
+        config.plugins.push({
+            ptype: "gxp_wmsrasterstylesdialog"
+        });
+    }
+    var ownerCt = this.ownerCt;
+    if (!(ownerCt.ownerCt instanceof Ext.Window)) {
+        config.dialogCls = Ext.Panel;
+        config.showDlg = function(dlg) {
+            dlg.layout = "fit";
+            dlg.autoHeight = false;
+            ownerCt.add(dlg);
+        };
+    }
+    return Ext.apply(config, {
+        title: this.stylesText,
+        style: "padding: 10px",
+        editable: false,
+        listeners: Ext.apply(config.listeners, {
+            "beforerender": {
+                fn: function(cmp) {
+                    var render = !this.editableStyles;
+                    if (!render) {
+                            Ext.Ajax.request({
+                                method: "PUT",
+                                url:"/data/" + this.layerRecord.getLayer().params.LAYERS + "/ajax-edit-check",
+                                callback: function(options, success, response) {
+                                    // we expect a 405 error code here if we are dealing with
+                                    // GeoServer and have write access. Otherwise we will
+                                    // create the panel in readonly mode.
+                                    cmp.editable = (response.status == 200);
+                                    cmp.ownerCt.doLayout();
+                                }
+                            });
+                    }
+                    return render;
+                },
+                scope: this,
+                single: true
+            }
+        })
+    });
+};
+
+
+
+</script>
+
+<script type="text/javascript" src="/scripts/nicEdit.js"></script>
+
+    <script src="https://www.google.com/jsapi?client=gme-harvarduniversity1"></script>
+
+
+<script type="text/javascript">
+    google.load("earth", "1");
+</script>
+
+<link rel="stylesheet" type="text/css" href="/styles/color-picker.ux.css" />
+<link rel="stylesheet" type="text/css" href="/styles/Spinner.css" />
+<style type="text/css">
+    #templates { display: none; }
+</style>
+
+
+
+
+
+    
+    <link rel="stylesheet" type="text/css" href="/styles/site.css" media="screen" />
+    
+
+    <script type="text/javascript" src="/jsi18n/"></script>
+    <script type="text/javascript" src="/scripst/lang.js"></script>
+    
+    <script type='text/javascript'>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20760232-1']);
+        _gaq.push(['_setDomainName', 'worldmap.harvard.edu']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    
+
+    
+
+<script type="text/javascript">
+    var originalConfigureLayerNode =  GeoExt.WMSLegend.prototype.getLegendUrl;
+    GeoExt.WMSLegend.prototype.getLegendUrl = function(layerName,layerNames) {
+        var rec = this.layerRecord;
+        var layer = rec.getLayer();
+        if (OpenLayers.Layer.WMS && layer instanceof OpenLayers.Layer.WMS && layer.getVisibility() === false) {
+            return "";
+        } else {
+            return originalConfigureLayerNode.apply(this, arguments);
+        }
+    };
+
+
+    var app;
+    var init = function() {
+
+
+        var config = Ext.apply({
+            tools:  [{
+                ptype: "gxp_geonodequerytool",
+                id: "worldmap_query_tool",
+                actionTarget:  {target: "paneltbar", index: 2},
+                toolText: '<span class="x-btn-text">Identify</span>',
+                iconCls: null,
+                outputConfig: {width: 400, height: 200, panIn: false},
+                featurePanel: 'queryPanel',
+                attributePanel: 'gridWinPanel',
+                toggleGroup: 'featureGroup'
+            },
+                {
+                    ptype: "gxp_coordinatetool",
+                    title: "<span class='x-btn-text'>Map Coordinates - longitude, latitude</span>",
+                    actionTarget:  {target: "paneltbar"}
+                },
+                {
+                    ptype: "gxp_printpage",
+                    openInNewWindow: true,
+                    includeLegend: true,
+                    text: '<span class="x-btn-text">Print</span>',
+                    iconCls: null,
+                    actionTarget: {target: "paneltbar", index: 4}
+                },
+                {
+                    ptype: "gxp_annotation",
+                    user: "None",
+                    toggleGroup: 'featureGroup',
+                    actionTarget:  {target: "paneltbar", index: 6}
+                },
+                {
+                    ptype: "gxp_googleearth",
+                    text: '<span class="x-btn-text">Google Earth</span>',
+                    iconCls: null,
+                    actionTarget: {target: "paneltbar", index: 7}
+                },
+                {
+                	ptype: "gxp_streetviewtool",
+                	actionTarget:   {target: "paneltbar", index: 8},
+                    toggleGroup: 'featureGroup'
+                },
+                {
+                	ptype: 'gxp_mapshare',
+                	target: this,
+                	text: '<span class="x-btn-text">Share Map</span>',
+                	iconCls: null,
+                    actionTarget:  {target: "paneltbar", index: 24}
+                },
+                {
+                    ptype: "gxp_gazetteertool",
+                    actionTarget:  {target: "paneltbar", index: 5},
+                    title: '<span class="x-btn-text">Find Place</span>',
+                    iconCls: null,
+                    toggleGroup: 'featureGroup',
+                    pressed: false
+                }
+                
+                
+                ],
+                proxy: "/proxy/?url=",
+
+            /* The URL to a REST map configuration service.  This service
+             * provides listing and, with an authenticated user, saving of
+             * maps on the server for sharing and editing.
+             */
+            rest: "/maps/",
+            homeUrl: "/",
+            localGeoServerBaseUrl: "http://worldmap.harvard.edu/geoserver/",
+            localCSWBaseUrl: "http://worldmap.harvard.edu/geonetwork/srv/en/csw",
+            csrfToken: "YN7YoLtah13J34WuRh2hhamYkhlgG4pQ",
+            
+            authorizedRoles: "ROLE_ANONYMOUS"
+        }, {
+    	"map": {
+    		"layers": [{
+    			"opacity": 1.0,
+    			"group": "background",
+    			"name": "AerialWithLabels",
+    			"title": "Bing Aerial With Labels",
+    			"url": null,
+    			"selected": false,
+    			"visibility": false,
+    			"source": "0",
+    			"fixed": true
+    		},
+    		{
+    			"opacity": 1.0,
+    			"group": "background",
+    			"name": "Aerial",
+    			"title": "Bing Aerial",
+    			"url": null,
+    			"selected": false,
+    			"visibility": false,
+    			"source": "0",
+    			"fixed": true
+    		},
+    		{
+    			"opacity": 1.0,
+    			"group": "background",
+    			"name": "Road",
+    			"title": "Bing Roads",
+    			"url": null,
+    			"selected": false,
+    			"visibility": false,
+    			"source": "0",
+    			"fixed": true
+    		},
+    		{
+    			"opacity": 1.0,
+    			"group": "background",
+    			"name": "TERRAIN",
+    			"title": "Google Terrain",
+    			"url": null,
+    			"selected": false,
+    			"visibility": true,
+    			"source": "1",
+    			"fixed": true
+    		},
+    		{
+    			"opacity": 1.0,
+    			"args": ["OpenStreetMap"],
+    			"group": "background",
+    			"name": "OpenStreetMap",
+    			"title": "OpenStreetMap",
+    			"url": null,
+    			"selected": false,
+    			"visibility": false,
+    			"source": "2",
+    			"fixed": true,
+    			"type": "OpenLayers.Layer.OSM"
+    		},
+    		{
+    			"opacity": 1.0,
+    			"group": "background",
+    			"name": "ROADMAP",
+    			"title": "Google Roadmap",
+    			"url": null,
+    			"selected": false,
+    			"visibility": false,
+    			"source": "1",
+    			"fixed": true
+    		},
+    		{
+    			"opacity": 1.0,
+    			"group": "background",
+    			"name": "HYBRID",
+    			"title": "Google Hybrid",
+    			"url": null,
+    			"selected": false,
+    			"visibility": false,
+    			"source": "1",
+    			"fixed": true
+    		},
+
+    		
+
+    		{
+    			"styles": "",
+    			"llbbox": [73.4191053859653,
+    			18.1652352577517,
+    			135.036848838878,
+    			53.5549096486017],
+    			"abstract": "China GDP (2000) by County\nSource:  \"2001 China Statistical Yearbook for Regional Economy\"  [Zhongguo quyu jingji tongji nianjian 2001, Zhongguo Tongji Chubanshe]",
+    			"disabled": false,
+    			"getFeatureInfo": {
+    				"fields": ["ENAME",
+    				"NAME2001",
+    				"GDP_MRMB",
+    				"GDP00",
+    				"GDP_Per_Ar"],
+    				"propertyNames": {
+    					"ENAME": "Name - Pinyin",
+    					"NAME2001": "Name - Chinese",
+    					"GDP_MRMB": "GDP (units: Million RMB)",
+    					"GDP00": "GDP (units: 10,000 RMB)",
+    					"GDP_Per_Ar": "GDP (10K RMB . km2)"
+    				}
+    			},
+    			"group": "Economy",
+    			"title": "GDP by County (2000) Million RMB",
+    			"selected": false,
+    			"source": "8",
+    			"opacity": 1.0,
+    			"format": "image/png",
+    			"buffer": 0,
+    			"visibility": false,
+    			"tiled": true,
+    			"transparent": true,
+    			"name": "geonode:china_2000_cnty_gdp_bqa",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"srs": "EPSG:4326",
+    			"attributes": [{
+    				"header": "Name - Pinyin",
+    				"id": "ENAME",
+    				"searchable": true
+    			},
+    			{
+    				"header": "Name - Chinese",
+    				"id": "NAME2001",
+    				"searchable": true
+    			},
+    			{
+    				"header": "GDP (units: Million RMB)",
+    				"id": "GDP_MRMB",
+    				"searchable": false
+    			},
+    			{
+    				"header": "GDP (units: 10,000 RMB)",
+    				"id": "GDP00",
+    				"searchable": false
+    			},
+    			{
+    				"header": "GDP (10K RMB . km2)",
+    				"id": "GDP_Per_Ar",
+    				"searchable": false
+    			}],
+    			"fixed": false,
+    			"queryable": [true],
+    			"bbox": [73.4191053859653,
+    			18.1652352577517,
+    			135.036848838878,
+    			53.5549096486017]
+    		},
+    		
+    		
+    		{
+    			"styles": "",
+    			"llbbox": [119.306197036434,
+    			21.8983227158343,
+    			121.999269579033,
+    			25.3019952427921],
+    			"abstract": "Taiwan, Pop Density (persons / sq km) 2000",
+    			"disabled": false,
+    			"getFeatureInfo": {
+    				"fields": ["\u9109\u93ae\u540d",
+    				"\u7e23\u9109\u540d",
+    				"\u7e23\u5e02\u540d",
+    				"COUN_CODE",
+    				"POP_2000",
+    				"area_sqkm",
+    				"popden_00"],
+    				"propertyNames": {
+    					"popden_00": "Pop Density (p/sq km)",
+    					"area_sqkm": "Area_Sqkm",
+    					"COUN_CODE": "County_Code",
+    					"POP_2000": "Pop_2000",
+    					"\u7e23\u9109\u540d": "\u7e23\u9109\u540d",
+    					"\u7e23\u5e02\u540d": "\u7e23\u5e02\u540d",
+    					"\u9109\u93ae\u540d": "\u9109\u93ae\u540d"
+    				}
+    			},
+    			"group": "Census",
+    			"title": "Taiwan, Pop Density (2000) km2",
+    			"selected": false,
+    			"source": "21",
+    			"opacity": 1.0,
+    			"format": "image/png",
+    			"buffer": 0,
+    			"visibility": false,
+    			"tiled": true,
+    			"transparent": true,
+    			"name": "geonode:taiwan_pop_big5_wgs84_AOM",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"srs": "EPSG:4326",
+    			"attributes": [{
+    				"header": "\u9109\u93ae\u540d",
+    				"id": "\u9109\u93ae\u540d",
+    				"searchable": true
+    			},
+    			{
+    				"header": "\u7e23\u9109\u540d",
+    				"id": "\u7e23\u9109\u540d",
+    				"searchable": true
+    			},
+    			{
+    				"header": "\u7e23\u5e02\u540d",
+    				"id": "\u7e23\u5e02\u540d",
+    				"searchable": true
+    			},
+    			{
+    				"header": "County_Code",
+    				"id": "COUN_CODE",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Pop_2000",
+    				"id": "POP_2000",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Area_Sqkm",
+    				"id": "area_sqkm",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Pop Density (p/sq km)",
+    				"id": "popden_00",
+    				"searchable": false
+    			}],
+    			"fixed": false,
+    			"queryable": [true],
+    			"bbox": [119.306197036434,
+    			21.8983227158343,
+    			121.999269579033,
+    			25.3019952427921]
+    		},
+    		
+    		{
+    			"opacity": 1.0,
+    			"group": "Census",
+    			"name": "cdc_1953_pop",
+    			"title": "Population Density (1953) km2",
+    			"cached": true,
+    			"format": "image/png",
+    			"selected": false,
+    			"visibility": false,
+    			"capability": {
+    				"abstract": "Historical Census 1953 [A53002 / km2], China Data Center, http://chinadatacenter.org/newcdc/hiscntycensus.htm  (Data Notes - http://chgis.hmdc.harvard.edu/chinamap/ChinaMap_Data_Notes.pdf )",
+    				"nestedLayers": [],
+    				"cascaded": 0,
+    				"fixedHeight": 0,
+    				"prefix": "cdc_1953_pop",
+    				"keywords": [],
+    				"noSubsets": false,
+    				"dimensions": {
+    					
+    				},
+    				"opaque": false,
+    				"infoFormats": ["text/plain",
+    				"text/html",
+    				"application/vnd.ogc.gml"],
+    				"styles": [{
+    					"legend": {
+    						"width": "20",
+    						"format": "image/png",
+    						"href": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map&version=1.1.1&service=WMS&request=GetLegendGraphic&layer=cdc_1953_pop&format=image/png",
+    						"height": "10"
+    					},
+    					"name": "default",
+    					"title": "default"
+    				}],
+    				"authorityURLs": {
+    					
+    				},
+    				"bbox": {
+    					"EPSG:4326": {
+    						"srs": "EPSG:4326",
+    						"bbox": [73.4488,
+    						5.36959,
+    						135.093,
+    						53.5603]
+    					}
+    				},
+    				"fixedWidth": 0,
+    				"metadataURLs": [],
+    				"name": "cdc_1953_pop",
+    				"identifiers": {
+    					
+    				},
+    				"srs": {
+    					"EPSG:900913": true
+    				},
+    				"formats": ["image/png",
+    				"image/gif",
+    				"image/png; mode=24bit",
+    				"image/jpeg",
+    				"image/wbmp",
+    				"image/tiff"],
+    				"title": "Population Density (1953) km2",
+    				"queryable": true,
+    				"llbbox": [73.4488,
+    				5.36959,
+    				135.093,
+    				53.5603]
+    			},
+    			"buffer": 0,
+    			"url": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map",
+    			"fixed": false,
+    			"transparent": true,
+    			"source": "9"
+    		},
+    		{
+    			"opacity": 1.0,
+    			"group": "Census",
+    			"name": "cdc_1964_pop",
+    			"title": "Population Density (1964) km2",
+    			"cached": true,
+    			"format": "image/png",
+    			"selected": false,
+    			"visibility": false,
+    			"capability": {
+    				"abstract": "Historical Census 1964 [A64002 / km2], China Data Center, http://chinadatacenter.org/newcdc/hiscntycensus.htm (Data Notes - http://chgis.hmdc.harvard.edu/chinamap/ChinaMap_Data_Notes.pdf )",
+    				"nestedLayers": [],
+    				"cascaded": 0,
+    				"fixedHeight": 0,
+    				"prefix": "cdc_1964_pop",
+    				"keywords": [],
+    				"noSubsets": false,
+    				"dimensions": {
+    					
+    				},
+    				"opaque": false,
+    				"infoFormats": ["text/plain",
+    				"text/html",
+    				"application/vnd.ogc.gml"],
+    				"styles": [{
+    					"title": "default",
+    					"legend": {
+    						"height": "10",
+    						"width": "20",
+    						"href": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map&version=1.1.1&service=WMS&request=GetLegendGraphic&layer=cdc_1964_pop&format=image/png",
+    						"format": "image/png"
+    					},
+    					"name": "default"
+    				}],
+    				"authorityURLs": {
+    					
+    				},
+    				"bbox": {
+    					"EPSG:4326": {
+    						"srs": "EPSG:4326",
+    						"bbox": [73.447,
+    						5.36959,
+    						135.086,
+    						53.5579]
+    					}
+    				},
+    				"fixedWidth": 0,
+    				"metadataURLs": [],
+    				"name": "cdc_1964_pop",
+    				"identifiers": {
+    					
+    				},
+    				"srs": {
+    					"EPSG:900913": true
+    				},
+    				"formats": ["image/png",
+    				"image/gif",
+    				"image/png; mode=24bit",
+    				"image/jpeg",
+    				"image/wbmp",
+    				"image/tiff"],
+    				"title": "Population Density (1964) km2",
+    				"queryable": true,
+    				"llbbox": [73.447,
+    				5.36959,
+    				135.086,
+    				53.5579]
+    			},
+    			"buffer": 0,
+    			"url": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map",
+    			"fixed": false,
+    			"transparent": true,
+    			"source": "9"
+    		},
+    		{
+    			"opacity": 0.95,
+    			"group": "Census",
+    			"name": "cdc_1982_cnty",
+    			"title": "Population Density (1982) km2",
+    			"cached": true,
+    			"format": "image/png",
+    			"selected": false,
+    			"visibility": false,
+    			"capability": {
+    				"abstract": "Historical Census 1982 [P82002], China Data Center, http://chinadatacenter.org/newcdc/hiscntycensus.htm (Data Notes - http://chgis.hmdc.harvard.edu/chinamap/ChinaMap_Data_Notes.pdf )",
+    				"nestedLayers": [],
+    				"cascaded": 0,
+    				"fixedHeight": 0,
+    				"prefix": "cdc_1982_cnty",
+    				"keywords": [],
+    				"noSubsets": false,
+    				"dimensions": {
+    					
+    				},
+    				"opaque": false,
+    				"infoFormats": ["text/plain",
+    				"text/html",
+    				"application/vnd.ogc.gml"],
+    				"styles": [{
+    					"legend": {
+    						"width": "20",
+    						"format": "image/png",
+    						"href": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map&version=1.1.1&service=WMS&request=GetLegendGraphic&layer=cdc_1982_cnty&format=image/png",
+    						"height": "10"
+    					},
+    					"name": "default",
+    					"title": "default"
+    				}],
+    				"authorityURLs": {
+    					
+    				},
+    				"bbox": {
+    					"EPSG:4326": {
+    						"srs": "EPSG:4326",
+    						"bbox": [73.447,
+    						16.8334,
+    						135.086,
+    						53.5579]
+    					}
+    				},
+    				"fixedWidth": 0,
+    				"metadataURLs": [],
+    				"name": "cdc_1982_cnty",
+    				"identifiers": {
+    					
+    				},
+    				"srs": {
+    					"EPSG:900913": true
+    				},
+    				"formats": ["image/png",
+    				"image/gif",
+    				"image/png; mode=24bit",
+    				"image/jpeg",
+    				"image/wbmp",
+    				"image/tiff"],
+    				"title": "Population Density (1982) km2",
+    				"queryable": true,
+    				"llbbox": [73.447,
+    				16.8334,
+    				135.086,
+    				53.5579]
+    			},
+    			"buffer": 0,
+    			"url": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map",
+    			"fixed": false,
+    			"transparent": true,
+    			"source": "9"
+    		},
+    		{
+    			"opacity": 0.27,
+    			"group": "Census",
+    			"name": "cdc_1990a_pop",
+    			"title": "Population Density (1990) km2",
+    			"cached": true,
+    			"format": "image/png",
+    			"selected": false,
+    			"visibility": false,
+    			"capability": {
+    				"abstract": "Historical Census 1990 PartA [A90002 / area_km2], China Data Center, http://chinadatacenter.org/newcdc/hiscntycensus.htm (Data Notes - http://chgis.hmdc.harvard.edu/chinamap/ChinaMap_Data_Notes.pdf )",
+    				"nestedLayers": [],
+    				"cascaded": 0,
+    				"fixedHeight": 0,
+    				"prefix": "cdc_1990a_pop",
+    				"keywords": [],
+    				"noSubsets": false,
+    				"dimensions": {
+    					
+    				},
+    				"opaque": false,
+    				"infoFormats": ["text/plain",
+    				"text/html",
+    				"application/vnd.ogc.gml"],
+    				"styles": [{
+    					"title": "default",
+    					"legend": {
+    						"height": "10",
+    						"width": "20",
+    						"href": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map&version=1.1.1&service=WMS&request=GetLegendGraphic&layer=cdc_1990a_pop&format=image/png",
+    						"format": "image/png"
+    					},
+    					"name": "default"
+    				}],
+    				"authorityURLs": {
+    					
+    				},
+    				"bbox": {
+    					"EPSG:4326": {
+    						"srs": "EPSG:4326",
+    						"bbox": [73.447,
+    						6.31864,
+    						135.086,
+    						53.5579]
+    					}
+    				},
+    				"fixedWidth": 0,
+    				"metadataURLs": [],
+    				"name": "cdc_1990a_pop",
+    				"identifiers": {
+    					
+    				},
+    				"srs": {
+    					"EPSG:900913": true
+    				},
+    				"formats": ["image/png",
+    				"image/gif",
+    				"image/png; mode=24bit",
+    				"image/jpeg",
+    				"image/wbmp",
+    				"image/tiff"],
+    				"title": "Population Density (1990) km2",
+    				"queryable": true,
+    				"llbbox": [73.447,
+    				6.31864,
+    				135.086,
+    				53.5579]
+    			},
+    			"buffer": 0,
+    			"url": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map",
+    			"fixed": false,
+    			"transparent": true,
+    			"source": "9"
+    		},
+    		{
+    			"opacity": 1.0,
+    			"group": "Census",
+    			"name": "cdc_2000a_pop",
+    			"title": "Population Density (2000) km2",
+    			"cached": true,
+    			"format": "image/png",
+    			"selected": false,
+    			"visibility": false,
+    			"capability": {
+    				"abstract": "Historical Census 2000 PartA [A101004 / area_km2], China Data Center, http://chinadatacenter.org/newcdc/hiscntycensus.htm (Data Notes - http://chgis.hmdc.harvard.edu/chinamap/ChinaMap_Data_Notes.pdf )",
+    				"nestedLayers": [],
+    				"cascaded": 0,
+    				"fixedHeight": 0,
+    				"prefix": "cdc_2000a_pop",
+    				"keywords": [],
+    				"noSubsets": false,
+    				"dimensions": {
+    					
+    				},
+    				"opaque": false,
+    				"infoFormats": ["text/plain",
+    				"text/html",
+    				"application/vnd.ogc.gml"],
+    				"styles": [{
+    					"title": "default",
+    					"legend": {
+    						"height": "10",
+    						"width": "20",
+    						"href": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map&version=1.1.1&service=WMS&request=GetLegendGraphic&layer=cdc_2000a_pop&format=image/png",
+    						"format": "image/png"
+    					},
+    					"name": "default"
+    				}],
+    				"authorityURLs": {
+    					
+    				},
+    				"bbox": {
+    					"EPSG:4326": {
+    						"srs": "EPSG:4326",
+    						"bbox": [73.447,
+    						6.31864,
+    						135.086,
+    						53.5579]
+    					}
+    				},
+    				"fixedWidth": 0,
+    				"metadataURLs": [],
+    				"name": "cdc_2000a_pop",
+    				"identifiers": {
+    					
+    				},
+    				"srs": {
+    					"EPSG:900913": true
+    				},
+    				"formats": ["image/png",
+    				"image/gif",
+    				"image/png; mode=24bit",
+    				"image/jpeg",
+    				"image/wbmp",
+    				"image/tiff"],
+    				"title": "Population Density (2000) km2",
+    				"queryable": true,
+    				"llbbox": [73.447,
+    				6.31864,
+    				135.086,
+    				53.5579]
+    			},
+    			"buffer": 0,
+    			"url": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=/nfs/cga/africa_map/edu-harvard-worldmap/eastasia/data/vec/vec.map",
+    			"fixed": false,
+    			"transparent": true,
+    			"source": "9"
+    		},
+    		{
+    			"styles": "",
+    			"llbbox": [73.679103393347,
+    			6.31864118575941,
+    			135.082331662509,
+    			53.5579257853631],
+    			"abstract": "Population Density 2010 [A100001 / area_sqkm], Source&#58; China Data Center, http&#58;//chinadatacenter.org/Data/ServiceContent.aspx?id=1621 &nbsp;(Variables and Data Notes - http&#58;//chgis.hmdc.harvard.edu/chinamap/ChinaMap_Data_Notes_2014.pdf )",
+    			"disabled": false,
+    			"getFeatureInfo": {
+    				"fields": ["CNTY_PY",
+    				"CNTY_ZH",
+    				"GB_CNTY",
+    				"CNTY_TYPE",
+    				"GB_DIST",
+    				"DIST_ZH",
+    				"DIST_PY",
+    				"GB_PROV",
+    				"PROV_ZH",
+    				"PROV_PY",
+    				"AREA_M",
+    				"AREA_SQKM",
+    				"v_A100001",
+    				"v_A100002",
+    				"v_A100003",
+    				"v_A100004",
+    				"v_A100005",
+    				"v_A100006",
+    				"v_A100007",
+    				"v_A100008",
+    				"v_A100009",
+    				"v_A300001",
+    				"v_A300002",
+    				"v_A300003",
+    				"v_A300009",
+    				"v_A300010",
+    				"v_A300011",
+    				"v_A400001",
+    				"v_A400002",
+    				"v_A400003",
+    				"v_A400004",
+    				"v_A400005",
+    				"v_A400006",
+    				"v_A400007",
+    				"v_A400008",
+    				"v_A400009",
+    				"v_A400010",
+    				"v_A400011",
+    				"v_A400012",
+    				"v_A400013",
+    				"v_A400014",
+    				"v_A400015",
+    				"v_A400019",
+    				"v_A400020",
+    				"v_A400021",
+    				"v_L500002",
+    				"v_L500010",
+    				"v_L600023",
+    				"v_L600024",
+    				"v_L600025",
+    				"v_L700005",
+    				"v_L700006",
+    				"v_L700008",
+    				"v_L700009",
+    				"v_L700011",
+    				"v_L700012",
+    				"v_L800010",
+    				"v_L800011",
+    				"v_L800012",
+    				"v_L800013",
+    				"v_CNTY_CH2",
+    				"popnorm",
+    				"employ",
+    				"unemploy"],
+    				"propertyNames": {
+    					"v_A400002": "V_A400002",
+    					"v_L700008": "V_L700008",
+    					"v_A400014": "V_A400014",
+    					"v_A300011": "V_A300011",
+    					"v_L700006": "V_L700006",
+    					"v_L700005": "V_L700005",
+    					"v_A100001": "V_A100001",
+    					"v_A100002": "V_A100002",
+    					"v_A100003": "V_A100003",
+    					"GB_PROV": "Gb_Prov",
+    					"v_A100005": "V_A100005",
+    					"v_A100006": "V_A100006",
+    					"v_A100007": "V_A100007",
+    					"v_A100008": "V_A100008",
+    					"v_A100009": "V_A100009",
+    					"DIST_ZH": "Dist_Zh",
+    					"v_A400007": "V_A400007",
+    					"v_A400001": "V_A400001",
+    					"v_A400005": "V_A400005",
+    					"v_A400004": "V_A400004",
+    					"popnorm": "Popnorm",
+    					"employ": "Employ",
+    					"v_L600024": "V_L600024",
+    					"v_L600025": "V_L600025",
+    					"v_A400021": "V_A400021",
+    					"v_A400020": "V_A400020",
+    					"v_A400015": "V_A400015",
+    					"v_A300010": "V_A300010",
+    					"AREA_M": "Area_M",
+    					"v_A400006": "V_A400006",
+    					"CNTY_TYPE": "Cnty_Type",
+    					"v_L800012": "V_L800012",
+    					"CNTY_ZH": "Cnty_Zh",
+    					"v_L500010": "V_L500010",
+    					"CNTY_PY": "Cnty_Py",
+    					"PROV_ZH": "Prov_Zh",
+    					"v_L700011": "V_L700011",
+    					"v_L700012": "V_L700012",
+    					"v_CNTY_CH2": "V_Cnty_Ch2",
+    					"GB_CNTY": "Gb_Cnty",
+    					"v_A400019": "V_A400019",
+    					"PROV_PY": "Prov_Py",
+    					"DIST_PY": "Dist_Py",
+    					"v_A300002": "V_A300002",
+    					"v_A300003": "V_A300003",
+    					"v_A300001": "V_A300001",
+    					"v_A400010": "V_A400010",
+    					"v_A400011": "V_A400011",
+    					"v_A400012": "V_A400012",
+    					"v_A400013": "V_A400013",
+    					"v_A400008": "V_A400008",
+    					"v_L600023": "V_L600023",
+    					"v_L700009": "V_L700009",
+    					"AREA_SQKM": "Area_Sqkm",
+    					"GB_DIST": "Gb_Dist",
+    					"unemploy": "Unemploy",
+    					"v_A400009": "V_A400009",
+    					"v_L800011": "V_L800011",
+    					"v_L800010": "V_L800010",
+    					"v_L800013": "V_L800013",
+    					"v_A300009": "V_A300009",
+    					"v_A400003": "V_A400003",
+    					"v_L500002": "V_L500002",
+    					"v_A100004": "V_A100004"
+    				}
+    			},
+    			"group": "Census",
+    			"title": "Population Density (2010) km2",
+    			"selected": true,
+    			"source": "41",
+    			"opacity": 1.0,
+    			"format": "image/png",
+    			"buffer": 0,
+    			"visibility": true,
+    			"tiled": true,
+    			"transparent": true,
+    			"name": "geonode:cdc_2010_chinamap_bu9",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"srs": "EPSG:4326",
+    			"attributes": [{
+    				"header": "Cnty_Py",
+    				"id": "CNTY_PY",
+    				"searchable": true
+    			},
+    			{
+    				"header": "Cnty_Zh",
+    				"id": "CNTY_ZH",
+    				"searchable": true
+    			},
+    			{
+    				"header": "Gb_Cnty",
+    				"id": "GB_CNTY",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Cnty_Type",
+    				"id": "CNTY_TYPE",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Gb_Dist",
+    				"id": "GB_DIST",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Dist_Zh",
+    				"id": "DIST_ZH",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Dist_Py",
+    				"id": "DIST_PY",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Gb_Prov",
+    				"id": "GB_PROV",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Prov_Zh",
+    				"id": "PROV_ZH",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Prov_Py",
+    				"id": "PROV_PY",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Area_M",
+    				"id": "AREA_M",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Area_Sqkm",
+    				"id": "AREA_SQKM",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100001",
+    				"id": "v_A100001",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100002",
+    				"id": "v_A100002",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100003",
+    				"id": "v_A100003",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100004",
+    				"id": "v_A100004",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100005",
+    				"id": "v_A100005",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100006",
+    				"id": "v_A100006",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100007",
+    				"id": "v_A100007",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100008",
+    				"id": "v_A100008",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A100009",
+    				"id": "v_A100009",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A300001",
+    				"id": "v_A300001",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A300002",
+    				"id": "v_A300002",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A300003",
+    				"id": "v_A300003",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A300009",
+    				"id": "v_A300009",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A300010",
+    				"id": "v_A300010",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A300011",
+    				"id": "v_A300011",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400001",
+    				"id": "v_A400001",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400002",
+    				"id": "v_A400002",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400003",
+    				"id": "v_A400003",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400004",
+    				"id": "v_A400004",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400005",
+    				"id": "v_A400005",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400006",
+    				"id": "v_A400006",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400007",
+    				"id": "v_A400007",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400008",
+    				"id": "v_A400008",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400009",
+    				"id": "v_A400009",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400010",
+    				"id": "v_A400010",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400011",
+    				"id": "v_A400011",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400012",
+    				"id": "v_A400012",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400013",
+    				"id": "v_A400013",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400014",
+    				"id": "v_A400014",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400015",
+    				"id": "v_A400015",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400019",
+    				"id": "v_A400019",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400020",
+    				"id": "v_A400020",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_A400021",
+    				"id": "v_A400021",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L500002",
+    				"id": "v_L500002",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L500010",
+    				"id": "v_L500010",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L600023",
+    				"id": "v_L600023",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L600024",
+    				"id": "v_L600024",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L600025",
+    				"id": "v_L600025",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L700005",
+    				"id": "v_L700005",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L700006",
+    				"id": "v_L700006",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L700008",
+    				"id": "v_L700008",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L700009",
+    				"id": "v_L700009",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L700011",
+    				"id": "v_L700011",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L700012",
+    				"id": "v_L700012",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L800010",
+    				"id": "v_L800010",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L800011",
+    				"id": "v_L800011",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L800012",
+    				"id": "v_L800012",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_L800013",
+    				"id": "v_L800013",
+    				"searchable": false
+    			},
+    			{
+    				"header": "V_Cnty_Ch2",
+    				"id": "v_CNTY_CH2",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Popnorm",
+    				"id": "popnorm",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Employ",
+    				"id": "employ",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Unemploy",
+    				"id": "unemploy",
+    				"searchable": false
+    			}],
+    			"fixed": false,
+    			"queryable": [true],
+    			"bbox": [73.679103393347,
+    			6.31864118575941,
+    			135.082331662509,
+    			53.5579257853631]
+    		},
+    		
+    		
+    		
+    		
+    		{
+    			"styles": "",
+    			"llbbox": [70.99717343345435,
+    			2.361766820376298,
+    			136.12009032608532,
+    			67.48468371300726],
+    			"abstract": "Major railways in China (2005)",
+    			"disabled": false,
+    			"getFeatureInfo": {
+    				"fields": ["LABEL_ENG",
+    				"LINE_ZH",
+    				"LINE_ENG",
+    				"FROM_ZH",
+    				"TO_ZH",
+    				"IN_PROV",
+    				"join_id",
+    				"join_id_1",
+    				"the_geom"],
+    				"propertyNames": {
+    					"IN_PROV": "IN_PROV",
+    					"join_id_1": "join_id_1",
+    					"LINE_ZH": "LINE_ZH",
+    					"TO_ZH": "TO_ZH",
+    					"LABEL_ENG": "LABEL_ENG",
+    					"join_id": "join_id",
+    					"the_geom": "the_geom",
+    					"FROM_ZH": "FROM_ZH",
+    					"LINE_ENG": "LINE_ENG"
+    				}
+    			},
+    			"group": "Transportation",
+    			"title": "Railways (2005)",
+    			"selected": false,
+    			"source": "3",
+    			"opacity": 0.9,
+    			"format": "image/png",
+    			"buffer": 0,
+    			"visibility": false,
+    			"tiled": true,
+    			"transparent": true,
+    			"name": "geonode:Railways",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"srs": "EPSG:2333",
+    			"attributes": [{
+    				"header": "LABEL_ENG",
+    				"id": "LABEL_ENG",
+    				"searchable": true
+    			},
+    			{
+    				"header": "LINE_ZH",
+    				"id": "LINE_ZH",
+    				"searchable": true
+    			},
+    			{
+    				"header": "LINE_ENG",
+    				"id": "LINE_ENG",
+    				"searchable": true
+    			},
+    			{
+    				"header": "FROM_ZH",
+    				"id": "FROM_ZH",
+    				"searchable": true
+    			},
+    			{
+    				"header": "TO_ZH",
+    				"id": "TO_ZH",
+    				"searchable": true
+    			},
+    			{
+    				"header": "IN_PROV",
+    				"id": "IN_PROV",
+    				"searchable": false
+    			},
+    			{
+    				"header": "join_id",
+    				"id": "join_id",
+    				"searchable": false
+    			},
+    			{
+    				"header": "join_id_1",
+    				"id": "join_id_1",
+    				"searchable": false
+    			},
+    			{
+    				"header": "the_geom",
+    				"id": "the_geom",
+    				"searchable": false
+    			}],
+    			"fixed": false,
+    			"queryable": [true],
+    			"bbox": [16465413.079234868,
+    			2018669.0277906882,
+    			21208398.918715764,
+    			5937554.07587591]
+    		},
+
+    		
+    		{
+    			"styles": "",
+    			"llbbox": [103.60458358000005,
+    			18.291528586000084,
+    			126.62943436,
+    			47.33849262700005],
+    			"abstract": "High Speed Railways (2011)\r\nGoogleEarth animation:\r\nhttp://bit.ly/jEe79o",
+    			"disabled": false,
+    			"getFeatureInfo": {
+    				"fields": ["HSR_NAME_C",
+    				"SPEED__KM_",
+    				"LENGTH__KM",
+    				"TERMINAL_S",
+    				"TYPE_ENG",
+    				"TYPE_CH",
+    				"BEGIN_KML",
+    				"END_KML",
+    				"name",
+    				"Layer",
+    				"Color",
+    				"SPEED",
+    				"CONDITION",
+    				"JOIN_ID"],
+    				"propertyNames": {
+    					"JOIN_ID": "Join_Id",
+    					"Layer": "Layer",
+    					"TYPE_ENG": "Type_Eng",
+    					"Color": "Color",
+    					"TERMINAL_S": "Terminal_S",
+    					"SPEED": "Speed",
+    					"END_KML": "End_Kml",
+    					"BEGIN_KML": "Begin_Kml",
+    					"SPEED__KM_": "Speed__Km_",
+    					"HSR_NAME_C": "Hsr_Name_C",
+    					"LENGTH__KM": "Length__Km",
+    					"TYPE_CH": "Type_Ch",
+    					"CONDITION": "Condition",
+    					"name": "Name"
+    				}
+    			},
+    			"group": "Transportation",
+    			"title": "High Speed Railways (2011)",
+    			"selected": false,
+    			"source": "44",
+    			"opacity": 1.0,
+    			"format": "image/png",
+    			"buffer": 0,
+    			"visibility": false,
+    			"tiled": true,
+    			"transparent": true,
+    			"name": "geonode:China_HSRail_Time_tPR",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"srs": "EPSG:4326",
+    			"attributes": [{
+    				"header": "Hsr_Name_C",
+    				"id": "HSR_NAME_C",
+    				"searchable": true
+    			},
+    			{
+    				"header": "Speed__Km_",
+    				"id": "SPEED__KM_",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Length__Km",
+    				"id": "LENGTH__KM",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Terminal_S",
+    				"id": "TERMINAL_S",
+    				"searchable": true
+    			},
+    			{
+    				"header": "Type_Eng",
+    				"id": "TYPE_ENG",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Type_Ch",
+    				"id": "TYPE_CH",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Begin_Kml",
+    				"id": "BEGIN_KML",
+    				"searchable": false
+    			},
+    			{
+    				"header": "End_Kml",
+    				"id": "END_KML",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Name",
+    				"id": "name",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Layer",
+    				"id": "Layer",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Color",
+    				"id": "Color",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Speed",
+    				"id": "SPEED",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Condition",
+    				"id": "CONDITION",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Join_Id",
+    				"id": "JOIN_ID",
+    				"searchable": false
+    			}],
+    			"fixed": false,
+    			"queryable": [true],
+    			"bbox": [103.60458358000005,
+    			18.291528586000084,
+    			126.62943436,
+    			47.33849262700005]
+    		},
+    		{
+    			"styles": "",
+    			"llbbox": [104.07,
+    			18.3,
+    			126.62,
+    			47.34],
+    			"abstract": "Point locations of High Speed Railway stations in China, georeferenced from public sources (primarily Google Earth basemap).  County, District and Province names circa 2000.  [Compiled by Yifan Li",
+    			"disabled": false,
+    			"getFeatureInfo": {
+    				"fields": ["name_utf",
+    				"the_geom",
+    				"type_num",
+    				"CNTY_NM",
+    				"DIST_NM",
+    				"PROV_NM",
+    				"CNTYGB",
+    				"long",
+    				"lat",
+    				"ch_statn_i",
+    				"src_file"],
+    				"propertyNames": {
+    					"ch_statn_i": "Ch_Statn_I",
+    					"name_utf": "Name_Utf",
+    					"long": "Long",
+    					"lat": "Lat",
+    					"DIST_NM": "Dist_Nm",
+    					"PROV_NM": "Prov_Nm",
+    					"type_num": "Type_Num",
+    					"src_file": "Src_File",
+    					"the_geom": "the_geom",
+    					"CNTY_NM": "Cnty_Nm",
+    					"CNTYGB": "Cntygb"
+    				}
+    			},
+    			"group": "Transportation",
+    			"title": "High Speed Rail Stations (2010)",
+    			"selected": true,
+    			"source": "3",
+    			"opacity": 0.8,
+    			"format": "image/png",
+    			"buffer": 0,
+    			"visibility": false,
+    			"tiled": true,
+    			"transparent": true,
+    			"name": "geonode:ch_HSR_st_2011",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"srs": "EPSG:4326",
+    			"attributes": [{
+    				"header": "Name_Utf",
+    				"id": "name_utf",
+    				"searchable": true
+    			},
+    			{
+    				"header": "the_geom",
+    				"id": "the_geom",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Type_Num",
+    				"id": "type_num",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Cnty_Nm",
+    				"id": "CNTY_NM",
+    				"searchable": true
+    			},
+    			{
+    				"header": "Dist_Nm",
+    				"id": "DIST_NM",
+    				"searchable": true
+    			},
+    			{
+    				"header": "Prov_Nm",
+    				"id": "PROV_NM",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Cntygb",
+    				"id": "CNTYGB",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Long",
+    				"id": "long",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Lat",
+    				"id": "lat",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Ch_Statn_I",
+    				"id": "ch_statn_i",
+    				"searchable": false
+    			},
+    			{
+    				"header": "Src_File",
+    				"id": "src_file",
+    				"searchable": false
+    			}],
+    			"fixed": false,
+    			"queryable": [true],
+    			"bbox": [104.07,
+    			18.3,
+    			126.62,
+    			47.34]
+    		}],
+    		
+    		
+    		"center": [11608407.745687,
+    		5044044.6568591],
+    		"zoom": 4,
+    		"groups": [
+
+    		{
+    			"expanded": "false",
+    			"group": "Transportation"
+    		},
+    		{
+    			"expanded": "true",
+    			"group": "Census"
+    		},
+    		{
+    			"expanded": "false",
+    			"group": "Economy"
+    		}],
+    		"units": "m",
+    		"maxResolution": 156543.03390625,
+    		"maxExtent": [-20037508.34,
+    		-20037508.34,
+    		20037508.34,
+    		20037508.34],
+    		"projection": "EPSG:900913"
+    	},
+    	"about": {
+    		"urlsuffix": "chinamap",
+    		"abstract": "Maps, Data, and Resources for Modern China",
+    		"officialurl": "chinamap",
+    		"introtext": "<table border=\"1\">\n<tbody>\n<tr>\n<td bgcolor=\"#CCCC99\">\n<h3><font>&nbsp; China Map </font></h3><font><b>&nbsp; &nbsp; &nbsp; Sponsored by&#58;</b></font><br/><br/>&nbsp; &nbsp; The Lee and Juliet Folger Fund &nbsp; &nbsp; </td></tr></tbody></table>\n<p><font>With support from&#58;</font><br/><br/><font><a href=\"http://www.wcfia.harvard.edu/\" target=\"_new\">Weatherhead Center for International Affairs</a></font><br/><br/><font><a href=\"http://fairbank.fas.harvard.edu//\" target=\"_new\">Fairbank Center for Chinese Studies</a></font><br/><br/><font>In Partnership with&#58; &nbsp;&nbsp;<a href=\"http://www.socialexplorer.com/\" target=\"_new\">Social Explorer</a>\n<font>  and  <a href=\"http://chinadatacenter.org\" target=\"_new\">China Data Center</a>\n</font><br/><br/>\n</font></p><h3><font><font>Editor&#58; &nbsp;Merrick Lex Berman</font></font></h3><font><strong>\n</strong><p><br/></p></font>",
+    		"title": "ChinaMap"
+    	},
+    	"topic_categories": [["farming",
+    	"Farming & Agriculture"],
+    	["biota",
+    	"Ecology & Biota"],
+    	["boundaries",
+    	"Boundaries"],
+    	["climatologyMeteorologyAtmosphere",
+    	"Climate & Weather"],
+    	["economy",
+    	"Economic Activities & Employment"],
+    	["elevation",
+    	"Elevation"],
+    	["environment",
+    	"Environmental Resources, Conservation"],
+    	["health",
+    	"Health & Human Ecology"],
+    	["geoscientificInformation",
+    	"Earth Sciences"],
+    	["imageryBaseMapsEarthCover",
+    	"Imagery & Base Maps"],
+    	["location",
+    	"Place Locations"],
+    	["planningCadastre",
+    	"Planning & Cadastral Data"],
+    	["society",
+    	"Society & Demographics"],
+    	["structure",
+    	"Structures"],
+    	["transportation",
+    	"Transportation"],
+    	["utilitiesCommunication",
+    	"Utilities & Infrastructure"],
+    	["intelligenceMilitary",
+    	"Military Bases & Activities"],
+    	["inlandWaters",
+    	"Rivers, Streams, Lakes"],
+    	["oceans",
+    	"Oceans"]],
+    	"uid": null,
+    	"first_visit": false,
+    	"edit_map": false,
+    	"sources": {
+    		"42": {
+    			"id": "41",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"43": {
+    			"id": "42",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"24": {
+    			"id": "24",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"25": {
+    			"id": "25",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"26": {
+    			"id": "26",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"27": {
+    			"id": "27",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"20": {
+    			"id": "20",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"21": {
+    			"id": "21",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"22": {
+    			"id": "22",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"23": {
+    			"id": "23",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"44": {
+    			"id": "43",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"45": {
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource"
+    		},
+    		"28": {
+    			"id": "28",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"29": {
+    			"id": "29",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"40": {
+    			"id": "40",
+    			"url": "http://141.211.24.149:8081/geoserver/wms",
+    			"baseParams": {
+    				"VERSION": "1.1.1",
+    				"REQUEST": "GetCapabilities",
+    				"TILED": true,
+    				"SERVICE": "WMS"
+    			},
+    			"ptype": "gxp_wmscsource",
+    			"title": "GeoServer Web Map Service"
+    		},
+    		"41": {
+    			"id": "44",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"1": {
+    			"apiKey": "ABQIAAAAkofooZxTfcCv9Wi3zzGTVxTnme5EwnLVtEDGnh-lFVzRJhbdQhQgAhB1eT_2muZtc0dl-ZSWrtzmrw",
+    			"id": "1",
+    			"ptype": "gx_googlesource"
+    		},
+    		"0": {
+    			"id": "0",
+    			"ptype": "gxp_bingsource"
+    		},
+    		"3": {
+    			"title": "GeoNode Source",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"baseParams": {
+    				"VERSION": "1.1.1",
+    				"REQUEST": "GetCapabilities",
+    				"TILED": true,
+    				"SERVICE": "WMS"
+    			},
+    			"ptype": "gxp_gnsource",
+    			"restUrl": "/gs/rest",
+    			"id": "3"
+    		},
+    		"2": {
+    			"id": "2",
+    			"ptype": "gx_olsource"
+    		},
+    		"5": {
+    			"id": "5",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"4": {
+    			"id": "4",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"7": {
+    			"id": "7",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"6": {
+    			"id": "6",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"9": {
+    			"id": "9",
+    			"url": "http://cga-5.hmdc.harvard.edu/cgi-bin/mapserv?map=%2Fnfs%2Fcga%2Fafrica_map%2Fedu-harvard-worldmap%2Feastasia%2Fdata%2Fvec%2Fvec.map",
+    			"baseParams": {
+    				"VERSION": "1.1.1",
+    				"REQUEST": "GetCapabilities",
+    				"TILED": true,
+    				"SERVICE": "WMS"
+    			},
+    			"ptype": "gxp_wmscsource",
+    			"title": "vec"
+    		},
+    		"8": {
+    			"id": "8",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"local": {
+    			"url": "/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource"
+    		},
+    		"39": {
+    			"id": "39",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"38": {
+    			"id": "38",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"11": {
+    			"id": "11",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"10": {
+    			"url": "http://chgis.hmdc.harvard.edu/georss/news_classic.xml",
+    			"id": "10",
+    			"ptype": "gx_feedsource"
+    		},
+    		"13": {
+    			"id": "13",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"12": {
+    			"id": "12",
+    			"url": "http://cga-5.hmdc.harvard.edu/tilecache/tiles.py/1.0.0/",
+    			"baseParams": {
+    				"VERSION": "1.1.1",
+    				"REQUEST": "GetCapabilities",
+    				"TILED": true,
+    				"SERVICE": "WMS"
+    			},
+    			"ptype": "gxp_wmscsource",
+    			"title": ""
+    		},
+    		"15": {
+    			"id": "15",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"14": {
+    			"id": "14",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"17": {
+    			"id": "17",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"16": {
+    			"id": "16",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"19": {
+    			"id": "19",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"18": {
+    			"id": "18",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"31": {
+    			"id": "31",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"30": {
+    			"id": "30",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"37": {
+    			"id": "37",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"36": {
+    			"id": "36",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"35": {
+    			"id": "35",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"34": {
+    			"id": "34",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"33": {
+    			"id": "33",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		},
+    		"32": {
+    			"id": "32",
+    			"url": "http://worldmap.harvard.edu/geoserver/wms",
+    			"restUrl": "/gs/rest",
+    			"ptype": "gxp_gnsource",
+    			"title": "GeoNode Source"
+    		}
+    	},
+    	"social_explorer": [{
+    		"url": "http://www.socialexplorer.com/pub/maps/map3.aspx?g=500",
+    		"title": "Social Explorer"
+    	}],
+    	"defaultSourceType": "gxp_gnsource",
+    	"id": 79
+    });
+
+
+        if (isMobile.any() && config.id) {
+        	redirect=confirm("Would you like to view the alpha mobile version of this map?");
+        	if (redirect===true){
+        		window.location = document.URL.replace(/\/$/g,"") + "/mobile/";
+        	}
+        }
+
+        app = new GeoExplorer(config, true);
+        
+        var permalinkTemplate = new Ext.Template("{protocol}//{host}/maps/{id}/edit");
+        var permalink = function(id) {
+            return permalinkTemplate.apply({
+                protocol: window.location.protocol,
+                host: window.location.host,
+                id: id
+            })
+        };
+
+
+        var titleTemplate = new Ext.Template("<span>{title}</span>");
+        Ext.DomHelper.overwrite(Ext.get("page-breadcrumb"), titleTemplate.apply({title: (config.about.title ? config.about.title : gettext('New Map'))}));
+
+        app.on("saved", function(id) {
+            //reset title header
+            Ext.DomHelper.overwrite(Ext.get("page-breadcrumb"), titleTemplate.apply({title: (config.about.title ? config.about.title : gettext('New Map'))}));
+
+
+    	
+
+        }, this);
+        
+        
+        
+        }
+
+        window.onload = init;
+
+    </script>
+
+
+    </head>
+    
+    
+    <body style="min-height:600px">
+
+    <div id="header-wrapper">
+        
+
+    <div id="header">
+        <div id="wmpower">Powered by <a target='_blank' href='/'>WorldMap</a></div>
+
+        <div class="wrapmap selfclear">
+
+            
+            
+            
+            <div id="page-breadcrumb"><h2></h2></div>
+            
+            
+            
+            <div id="login-area">
+                
+                <!-- this should be updated to a url var --><a href="/accounts/login?next=/chinamap/">Sign in</a>
+                
+                | <a class="" id="mapLink" href="/maps/new">Create Map</a>
+                | <a class="" id="mapLink" href="/maps/search?sort=last_modified&dir=DESC">View Map</a>
+                | <a class="" id="dataLink" href="/static/docs/WorldMap_Help.pdf" target="_blank">Help</a>                        
+            </div>
+        </div><!-- /.wrap -->
+    </div><!-- /#header -->
+
+
+
+        <div id="dataTabs" class="x-hidden">
+
+    <div id="searchDiv" style="background-color:#fff;width:800px;">
+    <div style="float:left;position:relative;margin:10px;width:580px;">
+      <div class="block">
+        <h2>Search <span class="subtitle">for geospatial data</span></h2>
+
+        <div id="search_results"></div>
+
+      </div>
+
+      <div class="block wrap selfclear">
+      <h3>Selected Data</h3>
+      <div id="selection">
+        <div id="data_cart"></div>
+        </div>
+        <div id="data_ops">
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+    <div style="position:relative;float:right;width:200px">
+      <div id="refine" class="block">
+        <h3>Refine Search</h3>
+        <div class="bbox-controls">
+          <div class="bbox-enabled"><input type="checkbox" /> By area</div>
+          <p><span class="explain">Limit the search to data that includes features in the displayed area.</span></p>
+          <div class="bbox-expand">
+          </div>
+        </div>
+        <div class="search-button">Refine</div>
+      </div>
+
+    </div>
+    </div>
+            <div id="externalDiv"></div>
+            
+            <div id="warpDiv">
+                <div id="tabContainer" style="padding:20px;">
+
+                    <div style="position:relative;float:left;">
+
+
+                        <h3>Rectify Images</h3>    
+                        
+                        <p style="font-size: 14px">Use <a target='_blank' href='http://warp.worldmap.harvard.edu'>WorldMap WARP</a> to upload and rectify scanned maps for use in WorldMap. <br/><br/> Maps rectified using this tool can be brought into WorldMap by following the instructions under Section 4.5 in <a href='{{ STATIC_URL }}docs/WorldMap_Help.pdf'>WorldMap Help</a>.</p>
+                        <br/><br/>
+                        <div align="center"><a target="_blank" href="http://warp.worldmap.harvard.edu"><img src="/static/theme/img/warper-sample.jpg" border="0" /></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="featuredetails" style="float:right; width: 300px"></div>
+           <div id="langselect" style="display:inline">
+       			<!-- Only show the language form if the csrf_token is present -->
+       			       
+       				
+        			<form class="langbar" id="target" action="/i18n/setlang/" method="post">
+          			<div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='YN7YoLtah13J34WuRh2hhamYkhlgG4pQ' /></div>
+
+             			<select id="langval" name="language" onchange="javascript:form.submit()">
+               			
+                			<option value="en"
+                    		 selected="selected">
+                    		English
+                			</option>
+               			
+             			</select>
+         			</form>
+       			
+          </div>
+    </body>
+    </html>
