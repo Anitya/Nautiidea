@@ -108,7 +108,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
     registerWin: null,
     worldMapSourceKey: null,
     hglSourceKey: null,
-    addLayersButtonText: "UT:Add Layers",
+    addLayersButtonText: "SZU:Add Layers",
     arcGisRestLabel: "UT: Add ArcGIS REST Server",
     areaActionText: "UT:Area",
     backgroundContainerText: "UT:Background",
@@ -1052,7 +1052,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
     },
     createMapOverlay: function() {
         var a = new Ext.BoxComponent({
-            html: '<div class="cga-link" onclick="javascript:window.open(\'http://gis.harvard.edu\', \'_blank\');"><a href="http://gis.harvard.edu">Center for Geographic Analysis</a></div>'
+            html: '<div class="cga-link" onclick="javascript:window.open(\'http://spatial.szu.edu.cn\', \'_blank\');"><a href="http://spatial.szu.edu.cn">Social Sensing Group</a></div>'
         }),
         b = new Ext.BoxComponent({
             autoEl: {
