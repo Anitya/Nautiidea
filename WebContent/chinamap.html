@@ -215,18 +215,21 @@ gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
     var init = function() {
 
 
-        var config = Ext.apply({
-            tools:  [{
-                ptype: "gxp_geonodequerytool",
-                id: "worldmap_query_tool",
-                actionTarget:  {target: "paneltbar", index: 2},
-                toolText: '<span class="x-btn-text">Identify</span>',
-                iconCls: null,
-                outputConfig: {width: 400, height: 200, panIn: false},
-                featurePanel: 'queryPanel',
-                attributePanel: 'gridWinPanel',
-                toggleGroup: 'featureGroup'
-            },
+        var config = Ext.apply(
+        {
+            tools:  
+            [            
+            	{
+                	ptype: "gxp_geonodequerytool",
+                	id: "worldmap_query_tool",
+                	actionTarget:  {target: "paneltbar", index: 2},
+                	toolText: '<span class="x-btn-text">Identify</span>',
+                	iconCls: null,
+                	outputConfig: {width: 400, height: 200, panIn: false},
+                	featurePanel: 'queryPanel',
+               	 	attributePanel: 'gridWinPanel',
+                	toggleGroup: 'featureGroup'
+            	},
                 {
                     ptype: "gxp_coordinatetool",
                     title: "<span class='x-btn-text'>Map Coordinates - longitude, latitude</span>",
@@ -271,12 +274,11 @@ gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
                     iconCls: null,
                     toggleGroup: 'featureGroup',
                     pressed: false
-                }
-                
-                
-                ],
-                proxy: "/proxy/?url=",
-
+                }                              
+           ],
+            
+            
+            proxy: "/proxy/?url=",
             /* The URL to a REST map configuration service.  This service
              * provides listing and, with an authenticated user, saving of
              * maps on the server for sharing and editing.
@@ -285,10 +287,11 @@ gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
             homeUrl: "/",
             localGeoServerBaseUrl: "http://worldmap.harvard.edu/geoserver/",
             localCSWBaseUrl: "http://worldmap.harvard.edu/geonetwork/srv/en/csw",
-            csrfToken: "YN7YoLtah13J34WuRh2hhamYkhlgG4pQ",
-            
+            csrfToken: "YN7YoLtah13J34WuRh2hhamYkhlgG4pQ",            
             authorizedRoles: "ROLE_ANONYMOUS"
-        }, {
+        }, 
+        
+        {
     	"map": {
     		"layers": [{
     			"opacity": 1.0,
@@ -308,7 +311,7 @@ gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
     			"title": "Bing Aerial",
     			"url": null,
     			"selected": false,
-    			"visibility": false,
+    			"visibility": true,
     			"source": "0",
     			"fixed": true
     		},
@@ -330,7 +333,7 @@ gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
     			"title": "Google Terrain",
     			"url": null,
     			"selected": false,
-    			"visibility": true,
+    			"visibility": false,
     			"source": "1",
     			"fixed": true
     		},
@@ -369,9 +372,6 @@ gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
     			"source": "1",
     			"fixed": true
     		},
-
-    		
-
     		{
     			"styles": "",
     			"llbbox": [73.4191053859653,
@@ -2160,15 +2160,8 @@ gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
         app.on("saved", function(id) {
             //reset title header
             Ext.DomHelper.overwrite(Ext.get("page-breadcrumb"), titleTemplate.apply({title: (config.about.title ? config.about.title : gettext('New Map'))}));
-
-
-    	
-
-        }, this);
-        
-        
-        
-        }
+        }, this);      
+     }
 
         window.onload = init;
 
@@ -2185,16 +2178,8 @@ gxp.WMSLayerPanel.prototype.createStylesPanel = function(url) {
 
     <div id="header">
         <div id="wmpower">Powered by <a target='_blank' href='/'>WorldMap</a></div>
-
         <div class="wrapmap selfclear">
-
-            
-            
-            
-            <div id="page-breadcrumb"><h2></h2></div>
-            
-            
-            
+           <div id="page-breadcrumb"><h2></h2></div>          
             <div id="login-area">
                 
                 <!-- this should be updated to a url var --><a href="/accounts/login?next=/chinamap/">Sign in</a>
