@@ -615,15 +615,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
         if (!this.busyMask) this.busyMask = new Ext.LoadMask(Ext.getBody(), {
             msg: this.loadingMapMessage
         });
-        this.busyMask.show();
-        var a = new Ext.Button({
-            id: "worldmap_addlayers_button",
-            tooltip: this.addLayersButtonText,
-            disabled: !1,
-            text: '<span class="x-btn-text">' + this.addLayersButtonText + "</span>",
-            handler: this.showSearchWindow,
-            scope: this
-        });
+        this.busyMask.show();      
         this.on("ready",
         function() {
             this.addInfo();
@@ -705,22 +697,22 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
             width: 600,
             height: 400
         });
-        this.toolbar = new Ext.Toolbar({
-            disabled: !0,
-            id: "paneltbar",
-            items: [a, this.createTools()]
-        });
-        this.on("ready",
-        function() {
-            var a = this.toolbar.items.filterBy(function(a) {
-                return a.initialConfig && a.initialConfig.disabled
-            });
-            this.toolbar.enable();
-            a.each(function(a) {
-                a.disable()
-            })
-        },
-        this);
+        // this.toolbar = new Ext.Toolbar({
+            // disabled: !0,
+            // id: "paneltbar",
+            // items: [ ]
+        // });
+        // this.on("ready",
+        // function() {
+            // var a = this.toolbar.items.filterBy(function(a) {
+                // return a.initialConfig && a.initialConfig.disabled
+            // });
+            // this.toolbar.enable();
+            // a.each(function(a) {
+                // a.disable()
+            // })
+        // },
+        // this);
         this.googleEarthPanel = new gxp.GoogleEarthPanel({
             mapPanel: this.mapPanel,
             listeners: {
@@ -1133,87 +1125,6 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
         },
         this);
         return d
-    },
-    createTools: function() {
-        var a = new Ext.Button({
-            tooltip: this.infoButtonText,
-            text: '<span class="x-btn-text">' + this.infoButtonText + "</span>",
-            handler: this.showInfoWindow,
-            scope: this
-        });
-        this.mapPanel.add(new Ext.Button({
-            text: this.moreText,
-            cls: "more-overlay-element",
-            id: "moreBtn",
-            menu: {
-                items: [{
-                    text: this.flickrText,
-                    iconCls: "icon-flickr",
-                    scope: this,
-                    disabled: !1,
-                    hidden: !1,
-                    handler: function() {
-                        this.showFeedDialog("gx_flickrsource")
-                    },
-                    scope: this
-                },
-                {
-                    text: this.picasaText,
-                    iconCls: "icon-picasa",
-                    scope: this,
-                    disabled: !1,
-                    hidden: !1,
-                    handler: function() {
-                        this.showFeedDialog("gx_picasasource")
-                    },
-                    scope: this
-                },
-                {
-                    text: this.youTubeText,
-                    iconCls: "icon-youtube",
-                    scope: this,
-                    disabled: !1,
-                    hidden: !1,
-                    handler: function() {
-                        this.showFeedDialog("gx_youtubesource")
-                    },
-                    scope: this
-                },
-                {
-                    text: this.hglText,
-                    iconCls: "icon-harvard",
-                    scope: this,
-                    handler: function() {
-                        this.showFeedDialog("gx_hglfeedsource")
-                    },
-                    scope: this
-                }]
-            }
-        }));
-        var b = new Ext.Action({
-            id: "worldmap_publish_tool",
-            tooltip: this.publishActionText,
-            handler: this.makeExportDialog,
-            scope: this,
-            text: '<span class="x-btn-text">' + this.publishBtnText + "</span>",
-            disabled: !this.mapID
-        }),
-        c = this.config.edit_map || "boston" !== this.about.urlsuffix ? this.saveMapBtnText: this.saveMapAsText,
-        a = [new Ext.Button({
-            tooltip: c,
-            handler: this.showMetadataForm,
-            scope: this,
-            disabled: !this.config.edit_map && "boston" !== this.about.urlsuffix,
-            text: '<span class="x-btn-text">' + c + "</span>"
-        }), b, a, "->"];
-        "boston" == this.about.urlsuffix && a.splice(13, 0, new GeoExplorer.SocialExplorer(this));
-        this.on("saved",
-        function() {
-            b.enable();
-            this.modified ^= this.modified & 1
-        },
-        this);
-        return a
     },
     makeExportDialog: function() {
         var a = this.getState(),
