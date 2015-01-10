@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ECharts Demo For Line</title>
+    <!--Step:1 Import a module loader, such as esl.js or require.js-->
+    <!--Step:1 引入一个模块加载器，如esl.js或者require.js-->
+    <script src="js/esl.js"></script>
+</head>
+
+<body style="background-color:#232532;">
+    <!--Step:2 Prepare a dom for ECharts which (must) has size (width & hight)-->
+    <!--Step:2 为ECharts准备一个具备大小（宽高）的Dom-->
+    <div id="lineChart" style="width:1000px;height:500px;border:solid 1px #ccc;padding:10px;margin:100px auto 10px;"></div>
+    <div style="width:1000px;margin:0 auto;"><a href="#" onclick="refresh();return false;" style="color:#fff;">点击刷新</a></div>
+    
+    <script type="text/javascript">
+    // Step:3 conifg ECharts's path, link to echarts.js from current page.
+    // Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
+    require.config({
+        paths:{ 
+            echarts:'./js/echarts',
+            'echarts/chart/map' : './js/echarts-map'
+        }
+    });
+
+    var echarts;
+    var lineChart;
+    var line;
+
+    function init(){
+        line = document.getElementById('lineChart');
+        require(
+            [
+                'echarts',
+                'echarts/chart/map'
+            ],
+            requireCallback
+        );
+    }
+
+    function requireCallback(ec){
+        echarts = ec;
+        lineChart = echarts.init(line);
+        refresh();
+    }
+
+    function refresh(){
+        if (lineChart && lineChart.dispose) {
+            lineChart.dispose();
+        }
+        lineChart = echarts.init(line);
+        var options = getoptions();
+        lineChart.setOption(options,true);
+    }
+
+    window.onload = init;
+
+    function getoptions(){
+        var options = {
+            title : {
+                text: '',
+                subtext: ''
+            },
+            color:["#cba213"],
+            tooltip : {
+                trigger: 'axis'
+            },
+            animation:false,
+            legend: {
+                //data:['最高气温','最低气温']
+            },
+            grid:{
+                borderWidth:0
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : true,
+                    splitLine : {show : false},
+                    data : ['00:00','01:00','02:00','03:00','04:00','05:00','06:00',
+                    '07:00','08:00','09:00','10:00','11:00','12:00','13:00',
+                    '14:00','15:00','16:00','17:00','18:00','19:00','20:00',
+                    '21:00','22:00','23:00'],
+                    axisLabel: {
+                        textStyle:{
+                            color: "#fff"
+                        }
+                    },
+                    axisLine:{
+                        lineStyle:{
+                            color:"#333"
+                        }
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        formatter: '{value}'
+                    },
+                    splitArea : {show : false},
+                    splitLine : {
+                        show:true,
+                        lineStyle:{
+                            color:"#333"
+                        }
+                    },
+                    axisLabel: {
+                        textStyle:{
+                            color: "#fff"
+                        }
+                    },
+                    axisLine:{
+                        lineStyle:{
+                            color:"#333"
+                        }
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'',
+                    type:'line',
+                    itemStyle: {
+                        normal: {
+                            lineStyle: {
+                                shadowColor : 'rgba(0,0,0,0.4)',
+                                shadowBlur: 5,
+                                shadowOffsetX: 3,
+                                shadowOffsetY: 3
+                            }
+                        }
+                    },
+                    smooth:true,
+                    data:[Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0,Math.random()*2000|0],
+                    markPoint : {
+                        data : [
+                            {type : 'max', name: '最大值'},
+                            {type : 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均值'}
+                        ]
+                    }
+                }
+            ]
+        };
+        return options;
+
+    }
+    </script>
+</body>
+</html>
