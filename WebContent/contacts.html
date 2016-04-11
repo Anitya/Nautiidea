@@ -1,12 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<html xmlns:wb="http://open.weibo.com/wb">
+
 <head profile="http://gmpg.org/xfn/11">
 <title>City Sensing Group (CSG)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
 <link rel="stylesheet" href="styles/layout.css" type="text/css" />
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1059407958" type="text/javascript" charset="utf-8"></script>
-    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1059407958&debug=true" type="text/javascript" charset="utf-8"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript" src="scripts/jquery-1.4.1.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.slidepanel.setup.js"></script>
 <script type="text/javascript" src="scripts/jquery.cycle.min.js"></script>
@@ -57,25 +60,26 @@
         </form>
       </div>
 
-<script>
-WB2.anyWhere(function(W){
-    W.widget.connectButton({
-        id: "wb_connect_btn",	
-        type:"2,1",
-        callback : {
-            login:function(o){	
-            	alert("login: "+o.screen_name)	
-            },	
-            logout:function(){	
-            }
-        }
-    });
-});
-</script>
-      <div class="topbox last">
+				<script type="text/javascript">
+					WB2.anyWhere(function(W) {
+						W.widget.connectButton({
+							id : "wb_connect_btn",
+							type : "2,1",
+							callback : {
+								login : function(o) {
+									alert("login: " + o.screen_name)
+								},
+								logout : function() {
+								}
+							}
+						});
+					});
+				</script>
+
+				<div class="topbox last">
         <h2>Login Using SNS Accounts</h2>
         <div id="wb_connect_btn"></div>
-
+		<wb:login-button type="2,1" onlogin="login" onlogout="logout">登录按钮</wb:login-button>
 					
         <form action="#" method="post">
           <fieldset>
@@ -102,7 +106,7 @@ WB2.anyWhere(function(W){
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
-      <h1><a href="#">City Sensing  Group (CSG) </a></h1>
+      <h1><a href="#">Urban Dynamics Group (UDG) </a></h1>
       <p>Shenzhen Key Laboratory of Spatial Smart Sensing and Services, Shenzhen University (China)</p>
     </div>
     <div id="topnav">
@@ -144,86 +148,48 @@ WB2.anyWhere(function(W){
       <li>Address:129 Luoyu Road, Wuhan 430079, Hubei, P.R. China</li>
     </ul>
     
+    <li>Ph.D. Xiaomeng Chang: <a href="chenbiyu.html"></a>
+
+
+    </li>
+    <wb:follow-button uid="2991975565" type="red_1" width="67" height="24" ></wb:follow-button>
+    <div id="wb_follow_btn" ></div>
+    <script>    WB2.anyWhere(function(W){
+    	W.widget.followButton({
+    		'nick_name': '姚晨',	//用户昵称
+    		'id': "wb_follow_btn",
+    		'show_head' : true,	//是否显示头像
+    		'show_name' : true,	//是否显示名称
+    		'show_cancel': true	//是否显示取消关注按钮
+    	});
+    	});
+    </script>
+
+    
     <h2>We Are On SINA Weibo</h2>
       <wb:bulkfollow uids="1261289604,5412474944" type="2" width="260" count="5" color="C2D9F2,FFFFFF,0082CB,666666" titlebar="n" info="n" verified="n" ></wb:bulkfollow>
-    <!--<ul>-->
-      <!--<li>Prof. Shih-Lung Shaw: <a href="chenbiyu.html"></a></li>-->
-      				<!--<div id="wb_follow_btn_shawsl" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
-					<!--<script>-->
-					<!--WB2.anyWhere(function(W){-->
-						<!--W.widget.followButton({-->
-							<!--'nick_name': '灏у瓱_M',	//鐢ㄦ埛鏄电О-->
-							<!--'id': "wb_follow_btn_shawsl"-->
-						<!--});-->
-					<!--});-->
-					<!--</script>-->
-      <!--<li>Prof. Qingquan Li: <a href="chenbiyu.html"></a></li>-->
-      				<!--<div id="wb_follow_btn_liqq" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
-					<!--<script>-->
-					<!--WB2.anyWhere(function(W){-->
-						<!--W.widget.followButton({-->
-							<!--'nick_name': '鏉庢竻娉�2012',	//鐢ㄦ埛鏄电О-->
-							<!--'id': "wb_follow_btn_liqq"-->
-						<!--});-->
-					<!--});-->
-					<!--</script>-->
-      <!--<li>Dr. Bi Yu Chen: <a href="chenbiyu.html"></a></li>-->
-      				<!--<div id="wb_follow_btn_chenby" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
-					<!--<script>-->
-					<!--WB2.anyWhere(function(W){-->
-						<!--W.widget.followButton({-->
-							<!--'nick_name': '灏у瓱_M',	//鐢ㄦ埛鏄电О-->
-							<!--'id': "wb_follow_btn_chenby"-->
-						<!--});-->
-					<!--});-->
-					<!--</script>-->
-      <li>Ph.D. Xiaomeng Chang: <a href="chenbiyu.html"></a>
-					<div id="wb_follow_btn_changxm" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>
-					<script>-->
-					WB2.anyWhere(function(W){
-						W.widget.followButton({
-							'nick_name': 'DrChang_珞珈',	
-							'id': "wb_follow_btn_changxm"
-						});
-					});
-					</script>
-      </li>
 
-      <!---->
-      <!--<li>Ph.D. Zhaoyang Shi: <a href="chenbiyu.html"></a></li>-->
-      				<!--<div id="wb_follow_btn_shizy" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
-					<!--<script>-->
-					<!--WB2.anyWhere(function(W){-->
-						<!--W.widget.followButton({-->
-							<!--'nick_name': '鍗辨満璇綍',	//鐢ㄦ埛鏄电О-->
-							<!--'id': "wb_follow_btn_shizy"-->
-						<!--});-->
-					<!--});-->
-					<!--</script>-->
-      <!--<li>Ph.D. Hui Yuan: <a href="chenbiyu.html"></a></li>-->
-            		<!--<div id="wb_follow_btn_yuanh" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
-					<!--<script>-->
-					<!--WB2.anyWhere(function(W){-->
-						<!--W.widget.followButton({-->
-							<!--'nick_name': '灏у瓱_M',	//鐢ㄦ埛鏄电О-->
-							<!--'id': "wb_follow_btn_yuanh"-->
-						<!--});-->
-					<!--});-->
-					<!--</script>-->
-      <!--<li>M.Sc Guozhen Lu: <a href="chenbiyu.html"></a></li>-->
-            		<!--<div id="wb_follow_btn_lugz" style="width:50em;height:50px;border:1px solid #bbb;background:#eee; padding:5px 2px;"></div>-->
-					<!--<script>-->
-					<!--WB2.anyWhere(function(W){-->
-						<!--W.widget.followButton({-->
-							<!--'nick_name': '鐏靛瓙zzz',	//鐢ㄦ埛鏄电О-->
-							<!--'id': "wb_follow_btn_lugz"-->
-						<!--});-->
-					<!--});-->
-					<!--</script>-->
 
-    <!--</ul>  -->
-    
-     <div id="comments">
+			<script type="text/javascript">
+				(function() {
+					var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=http%3A%2F%2Fstlab.cn&appkey=1059407958&dpc=1";
+					document
+							.write('<iframe id="WBCommentFrame" src="'
+									+ url
+									+ '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
+				})();
+			</script>
+			<script
+				src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js"
+				type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				window.WBComment.init({
+					"id" : "WBCommentFrame"
+				});
+			</script>
+
+
+			<div id="comments">
         <h2>Comments</h2>
         <ul class="commentlist">
           <li class="comment_odd">

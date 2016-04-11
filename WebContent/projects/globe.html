@@ -146,6 +146,7 @@ function setupLayers() {
             new Cesium.TileMapServiceImageryProvider({
                 url : require.toUrl('Assets/Textures/NaturalEarthII')
             }));
+
     addBaseLayerOption(
             'USGS Shaded Relief (via WMTS)',
             new Cesium.WebMapTileServiceImageryProvider({
@@ -158,7 +159,25 @@ function setupLayers() {
                 credit : new Cesium.Credit('U. S. Geological Survey')
             }));
 
+    addBaseLayerOption(
+            'TencentQQPositioning Maps (20160304-20160310)',
+            new Cesium.TileMapServiceImageryProvider({
+                url : require.toUrl('Assets/Textures/TencentQQPositioning_20160304_20160310')
+            }));
+    
     // Create the additional layers
+    //
+
+    
+    addAdditionalLayerOption(
+            'Grid',
+            new Cesium.GridImageryProvider(), 1.0, false);
+    addAdditionalLayerOption(
+            'Tile Coordinates',
+            new Cesium.TileCoordinatesImageryProvider(), 1.0, false);
+}
+
+function other(){
     addAdditionalLayerOption(
             'United States GOES Infrared',
             new Cesium.WebMapServiceImageryProvider({
@@ -196,12 +215,6 @@ function setupLayers() {
                 rectangle : Cesium.Rectangle.fromDegrees(-115.0, 38.0, -107, 39.75)
             }),
             1.0);
-    addAdditionalLayerOption(
-            'Grid',
-            new Cesium.GridImageryProvider(), 1.0, false);
-    addAdditionalLayerOption(
-            'Tile Coordinates',
-            new Cesium.TileCoordinatesImageryProvider(), 1.0, false);
 }
 
 function addBaseLayerOption(name, imageryProvider) {
