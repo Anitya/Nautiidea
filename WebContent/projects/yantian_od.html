@@ -1,0 +1,1450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>Shenzhen Nauti Idea Digital Tech. Co., Ltd. 深圳诺地思维数字科技有限公司</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="../styles/layout.css" type="text/css" />
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1059407958" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../scripts/jquery-1.4.1.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.slidepanel.setup.js"></script>
+<script type="text/javascript" src="../scripts/jquery.cycle.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.cycle.setup.js"></script>
+
+<script src="../scripts/echarts/js/esl.js"></script>
+<script src="../scripts/jquery.min.js"></script>
+<script type="text/javascript" src="../scripts/require.js"></script>
+
+
+</head>
+<body>
+<div class="wrapper col0">
+  <div id="topbar">
+    <div id="slidepanel">
+      <div class="topbox">
+        <h2>User Login Guide</h2>
+        <p>Notice: No.1 ******</p>
+        <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+        <br/>
+        <h2>New User Register</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>New User Register Form</legend>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="       Register Here >>     " />
+            </p>
+          </fieldset>
+        </form>
+        
+      </div>
+          
+            
+      <div class="topbox">
+        <h2>Login Using Inside Accounts</h2>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="teachername">Username:
+              <input type="text" name="teachername" id="teachername" value="" />
+            </label>
+            <label for="teacherpass">Password:
+              <input type="password" name="teacherpass" id="teacherpass" value="" />
+            </label>
+            <label for="teacherremember">
+              <input class="checkbox" type="checkbox" name="teacherremember" id="teacherremember" checked="checked" />
+             Remember Account</label>
+            <p>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="    Login    " />
+              &nbsp;
+              <input type="reset" name="teacherreset" id="teacherreset" value="  Reset  " />
+            </p>
+          </fieldset>
+        </form>
+      </div>
+
+<script>
+WB2.anyWhere(function(W){
+    W.widget.connectButton({
+        id: "wb_connect_btn",	
+        type:"2,1",
+        callback : {
+            login:function(o){	
+            	alert("login: "+o.screen_name)	
+            },	
+            logout:function(){	
+            }
+        }
+    });
+});
+</script>
+      <div class="topbox last">
+        <h2>Login Using SNS Accounts</h2>
+        <div id="wb_connect_btn"></div>
+
+					
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Pupils Login Form</legend>
+            <br />
+            <label for="pupilremember">
+              <input class="checkbox" type="checkbox" name="pupilremember" id="pupilremember" checked="checked" />
+              Remember Account</label>
+          </fieldset>
+        </form>
+      </div>
+      <br class="clear" />
+    </div>
+    <div id="loginpanel">
+      <ul>
+        <li class="left">Login here &raquo;</li>
+        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Open panel</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Shenzhen Nauti Idea Digital Tech. Co., Ltd. </a></h1>
+      <p>深圳诺地思维数字科技有限公司</p>
+    </div>
+    <div id="topnav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../team.html">Research</a></li>
+        <li><a href="../papers.html">Papers</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li class="active"><a href="../projects.html">Projects</a></li>
+        <li><a href="../contacts.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col2">
+  <div id="breadcrumb">
+    <ul>
+      <li class="first">You Are Here</li>
+      <li>&#187;</li>
+      <li><a href="../index.html">Home</a></li>
+      <li>&#187;</li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li>&#187;</li>
+      <li class="current"><a href="yantian_od.html">Yantian_OD</a></li>
+    </ul>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col3">
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="height:900px"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/map' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                
+                					// 自定义扩展图表类型：mapType = Shenzhen_Admin
+					require('echarts/util/mapData/params').params.Shenzhen_Admin = {
+						getGeoJson : function(callback) {
+							$.getJSON('../scripts/echarts/Shenzhen_Administrative.json',
+									callback);
+						}
+					}
+                
+                var option = {
+                	    backgroundColor: '#1b1b1b',
+                	    color: ['gold','aqua','lime'],
+                	    title : {
+                	        text: '深圳盐田区出行分布图',
+                	        subtext:'2017',
+                	        x:'center',
+                	        textStyle : {
+                	            color: '#fff'
+                	        }
+                	    },
+                	    tooltip : {
+                	        trigger: 'item',
+                	        formatter: '{b}'
+                	    },
+                	    legend: {
+                	        orient: 'vertical',
+                	        x:'left',
+                	        data:['沙头角片区（发生量）', '后方陆域（发生量）', '梅沙片区（发生量）','盐田分片区（发生量）','沙头角片区（吸引量）','后方陆域（吸引量）','梅沙片区（吸引量）','盐田分片区（吸引量）','盐田（发生量）','盐田（吸引量）'],
+                	        selectedMode: 'single',
+                	        selected:{
+                	            '后方陆域' : false,
+                	            '梅沙片区' : false,
+                	            '全区' : false
+                	        },
+                	        textStyle : {
+                	            color: '#fff'
+                	        }
+                	    },
+                	    toolbox: {
+                	        show : true,
+                	        orient : 'vertical',
+                	        x: 'right',
+                	        y: 'center',
+                	        feature : {
+                	            mark : {show: true},
+                	            dataView : {show: true, readOnly: false},
+                	            restore : {show: true},
+                	            saveAsImage : {show: true}
+                	        }
+                	    },
+                	    dataRange: {
+                	        min : 0,
+                	        max : 5000,
+                	        calculable : true,
+                	        color: ['#ff3333', 'orange', 'yellow','lime','aqua'],
+                	        textStyle:{
+                	            color:'#fff'
+                	        }
+                	    },
+                	    series : [
+                	        {
+                	            name: '全国',
+                	            type: 'map',
+                	            roam: true,
+                	            hoverable: false,
+                	            mapType: 'Shenzhen_Admin',
+                	            itemStyle:{
+                	                normal:{
+                	                    borderColor:'rgba(100,149,237,1)',
+                	                    borderWidth:0.5,
+                	                    areaStyle:{
+                	                        color: '#1b1b1b'
+                	                    }
+                	                }
+                	            },
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                symbol: ['none', 'circle'],  
+                	                symbolSize : 1,
+                	                itemStyle : {
+                	                    normal: {
+                	                        color:'#fff',
+                	                        borderWidth:1,
+                	                        borderColor:'rgba(30,144,255,0.5)'
+                	                    }
+                	                },
+                	                data : [
+                                       [{name:'盐田'},{name:'光明'}],
+                	                     [{name:'盐田'},{name:'南山'}],
+                	                      [{name:'盐田'},{name:'罗湖'}],
+                	                       [{name:'盐田'},{name:'福田'}],
+                	                        [{name:'盐田'},{name:'大鹏'}],
+                	                         [{name:'盐田'},{name:'龙岗'}],
+                	                          [{name:'盐田'},{name:'坪山'}],
+                	                           [{name:'盐田'},{name:'龙华'}],
+                	                            [{name:'盐田'},{name:'宝安'}],
+                	                             [{name:'盐田'},{name:'后方陆域'}],
+                	                              [{name:'盐田'},{name:'梅沙片区'}],
+                	                               [{name:'盐田'},{name:'广州方向'}],
+                	                                [{name:'盐田'},{name:'香港方向'}],
+                	                                
+                	                    [{name:'沙头角片区'},{name:'光明'}],
+                	                     [{name:'沙头角片区'},{name:'南山'}],
+                	                      [{name:'沙头角片区'},{name:'罗湖'}],
+                	                       [{name:'沙头角片区'},{name:'福田'}],
+                	                        [{name:'沙头角片区'},{name:'大鹏'}],
+                	                         [{name:'沙头角片区'},{name:'龙岗'}],
+                	                          [{name:'沙头角片区'},{name:'坪山'}],
+                	                           [{name:'沙头角片区'},{name:'龙华'}],
+                	                            [{name:'沙头角片区'},{name:'宝安'}],
+                	                             [{name:'沙头角片区'},{name:'后方陆域'}],
+                	                              [{name:'沙头角片区'},{name:'梅沙片区'}],
+                	                               [{name:'沙头角片区'},{name:'广州方向'}],
+                	                                [{name:'沙头角片区'},{name:'香港方向'}],
+                	                    [{name:'后方陆域'},{name:'光明'}],
+                	                     [{name:'后方陆域'},{name:'南山'}],
+                	                      [{name:'后方陆域'},{name:'罗湖'}],
+                	                       [{name:'后方陆域'},{name:'福田'}],
+                	                        [{name:'后方陆域'},{name:'大鹏'}],
+                	                         [{name:'后方陆域'},{name:'龙岗'}],
+                	                          [{name:'后方陆域'},{name:'坪山'}],
+                	                           [{name:'后方陆域'},{name:'龙华'}],
+                	                            [{name:'后方陆域'},{name:'宝安'}],
+                	                             [{name:'后方陆域'},{name:'沙头角片区'}],
+                	                              [{name:'后方陆域'},{name:'梅沙片区'}],
+                	                               [{name:'后方陆域'},{name:'广州方向'}],
+                	                                [{name:'后方陆域'},{name:'香港方向'}],
+                	                     [{name:'梅沙片区'},{name:'南山'}],
+                	                      [{name:'梅沙片区'},{name:'罗湖'}],
+                	                       [{name:'梅沙片区'},{name:'福田'}],
+                	                        [{name:'梅沙片区'},{name:'大鹏'}],
+                	                         [{name:'梅沙片区'},{name:'龙岗'}],
+                	                          [{name:'梅沙片区'},{name:'坪山'}],
+                	                           [{name:'梅沙片区'},{name:'龙华'}],
+                	                            [{name:'梅沙片区'},{name:'宝安'}],
+                	                             [{name:'梅沙片区'},{name:'沙头角片区'}],
+                	                              [{name:'梅沙片区'},{name:'后方陆域'}],
+                	                               [{name:'梅沙片区'},{name:'广州方向'}],
+                	                                [{name:'梅沙片区'},{name:'香港方向'}],  
+                	                     [{name:'南山'},{name:'盐田'}],
+                	                      [{name:'罗湖'},{name:'盐田'}],
+                	                       [{name:'福田'},{name:'盐田'}],
+                	                        [{name:'大鹏'},{name:'盐田'}],
+                	                         [{name:'龙岗'},{name:'盐田'}],
+                	                          [{name:'坪山'},{name:'盐田'}],
+                	                           [{name:'龙华'},{name:'盐田'}],
+                	                            [{name:'宝安'},{name:'盐田'}],
+                	                             [{name:'沙头角片区'},{name:'盐田'}],
+                	                              [{name:'后方陆域'},{name:'盐田'}],
+                	                               [{name:'广州方向'},{name:'盐田'}],
+                	                                [{name:'香港方向'},{name:'盐田'}], 
+                	                     [{name:'南山'},{name:'沙头角片区'}],
+                	                      [{name:'罗湖'},{name:'沙头角片区'}],
+                	                       [{name:'福田'},{name:'沙头角片区'}],
+                	                        [{name:'大鹏'},{name:'沙头角片区'}],
+                	                         [{name:'龙岗'},{name:'沙头角片区'}],
+                	                          [{name:'坪山'},{name:'沙头角片区'}],
+                	                           [{name:'龙华'},{name:'沙头角片区'}],
+                	                            [{name:'宝安'},{name:'沙头角片区'}],
+                	                             [{name:'沙头角片区'},{name:'沙头角片区'}],
+                	                              [{name:'后方陆域'},{name:'沙头角片区'}],
+                	                               [{name:'广州方向'},{name:'沙头角片区'}],
+                	                                [{name:'香港方向'},{name:'沙头角片区'}], 
+                	                    [{name:'南山'},{name:'后方陆域'}],
+                	                      [{name:'罗湖'},{name:'后方陆域'}],
+                	                       [{name:'福田'},{name:'后方陆域'}],
+                	                        [{name:'大鹏'},{name:'后方陆域'}],
+                	                         [{name:'龙岗'},{name:'后方陆域'}],
+                	                          [{name:'坪山'},{name:'后方陆域'}],
+                	                           [{name:'龙华'},{name:'后方陆域'}],
+                	                            [{name:'宝安'},{name:'后方陆域'}],
+                	                             [{name:'沙头角片区'},{name:'后方陆域'}],
+                	                              [{name:'后方陆域'},{name:'后方陆域'}],
+                	                               [{name:'广州方向'},{name:'后方陆域'}],
+                	                                [{name:'香港方向'},{name:'后方陆域'}],
+                	                     [{name:'南山'},{name:'梅沙片区'}],
+                	                      [{name:'罗湖'},{name:'梅沙片区'}],
+                	                       [{name:'福田'},{name:'梅沙片区'}],
+                	                        [{name:'大鹏'},{name:'梅沙片区'}],
+                	                         [{name:'龙岗'},{name:'梅沙片区'}],
+                	                          [{name:'坪山'},{name:'梅沙片区'}],
+                	                           [{name:'龙华'},{name:'梅沙片区'}],
+                	                            [{name:'宝安'},{name:'梅沙片区'}],
+                	                             [{name:'沙头角片区'},{name:'梅沙片区'}],
+                	                              [{name:'后方陆域'},{name:'梅沙片区'}],
+                	                               [{name:'广州方向'},{name:'梅沙片区'}],
+               	                                [{name:'香港方向'},{name:'梅沙片区'}]              
+                	                ],
+                	            },
+                	            geoCoord: {
+'盐田': [114.25987,22.60306999],                	                
+'光明': [113.9358633960,22.7489225533],
+'南山': [113.9303775083,22.5333385713],
+'罗湖': [114.1316380200,22.5483425000],
+'福田': [114.0549880095,22.5215498919],
+'大鹏': [114.4161233346,22.6399716019],
+'龙岗': [114.2477767206,22.7199088132],
+'坪山': [114.3475804969,22.7072059136],
+'龙华': [114.0402880806,22.7203970088],
+'宝安': [113.8838650880,22.5550197781],
+'后方陆域': [114.25987,22.60306999],
+'沙头角片区': [114.22281,22.56452],
+'梅沙片区': [114.31104,22.61112999],
+'广州方向': [113.7494946,22.81935513],
+'香港方向': [114.1604896100,22.4780757700]
+                	            }
+                	        },
+                	        {
+                	            name: '沙头角片区（发生量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'沙头角片区'}, {name:'沙头角片区',value:131990}],
+[{name:'沙头角片区'}, {name:'后方陆域',value:13074}],
+[{name:'沙头角片区'}, {name:'梅沙片区',value:3408}],
+[{name:'沙头角片区'}, {name:'罗湖',value:25625}],
+[{name:'沙头角片区'}, {name:'福田',value:6174}],
+[{name:'沙头角片区'}, {name:'南山',value:1366}],
+[{name:'沙头角片区'}, {name:'宝安',value:118}],
+[{name:'沙头角片区'}, {name:'龙岗',value:624}],
+[{name:'沙头角片区'}, {name:'光明',value:17}],
+[{name:'沙头角片区'}, {name:'坪山',value:101}],
+[{name:'沙头角片区'}, {name:'龙华',value:67}],
+[{name:'沙头角片区'}, {name:'大鹏',value:67}],
+[{name:'沙头角片区'}, {name:'广州方向',value:17}],
+[{name:'沙头角片区'}, {name:'香港方向',value:236}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'沙头角片区',value:131990},
+{name:'后方陆域',value:13074},
+{name:'梅沙片区',value:3408},
+{name:'罗湖',value:25625},
+{name:'福田',value:6174},
+{name:'南山',value:1366},
+{name:'宝安',value:118},
+{name:'龙岗',value:624},
+{name:'光明',value:17},
+{name:'坪山',value:101},
+{name:'龙华',value:67},
+{name:'大鹏',value:67},
+{name:'广州方向',value:17},
+{name:'香港方向',value:236}
+                	                ]
+                	            }
+                	        },
+                	        {
+                	            name: '后方陆域（发生量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }	
+                	                },
+                	                
+
+                	                
+                	                data : [
+[{name:'后方陆域'}, {name:'沙头角片区',value:24905}],
+[{name:'后方陆域'}, {name:'梅沙片区',value:6684}],
+[{name:'后方陆域'}, {name:'罗湖',value:27508}],
+[{name:'后方陆域'}, {name:'福田',value:2346}],
+[{name:'后方陆域'}, {name:'南山',value:289}],
+[{name:'后方陆域'}, {name:'宝安',value:129}],
+[{name:'后方陆域'}, {name:'龙岗',value:868}],
+[{name:'后方陆域'}, {name:'光明',value:32}],
+[{name:'后方陆域'}, {name:'坪山',value:1}],
+[{name:'后方陆域'}, {name:'龙华',value:96}],
+[{name:'后方陆域'}, {name:'大鹏',value:1}],
+[{name:'后方陆域'}, {name:'广州方向',value:1}],
+[{name:'后方陆域'}, {name:'香港方向',value:1}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'沙头角片区',value:24905},
+{name:'后方陆域',value:120766},
+{name:'梅沙片区',value:6684},
+{name:'罗湖',value:27508},
+{name:'福田',value:2346},
+{name:'南山',value:289},
+{name:'宝安',value:129},
+{name:'龙岗',value:868},
+{name:'光明',value:32},
+{name:'坪山',value:1},
+{name:'龙华',value:96},
+{name:'大鹏',value:1},
+{name:'广州方向',value:1},
+{name:'香港方向',value:1}
+                	                ]
+                	            }
+                	        },
+                	        
+                	        {
+                	            name: '梅沙片区（发生量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'梅沙片区'}, {name:'沙头角片区',value:4382}],
+[{name:'梅沙片区'}, {name:'后方陆域',value:4534}],
+[{name:'梅沙片区'}, {name:'梅沙片区',value:22236}],
+[{name:'梅沙片区'}, {name:'罗湖',value:2310}],
+[{name:'梅沙片区'}, {name:'福田',value:367}],
+[{name:'梅沙片区'}, {name:'南山',value:1}],
+[{name:'梅沙片区'}, {name:'宝安',value:1}],
+[{name:'梅沙片区'}, {name:'龙岗',value:281}],
+[{name:'梅沙片区'}, {name:'光明',value:1}],
+[{name:'梅沙片区'}, {name:'坪山',value:1}],
+[{name:'梅沙片区'}, {name:'龙华',value:43}],
+[{name:'梅沙片区'}, {name:'大鹏',value:432}],
+[{name:'梅沙片区'}, {name:'广州方向',value:1}],
+[{name:'梅沙片区'}, {name:'香港方向',value:1}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'沙头角片区',value:4382},
+{name:'后方陆域',value:4534},
+{name:'梅沙片区',value:22236},
+{name:'罗湖',value:2310},
+{name:'福田',value:367},
+{name:'南山',value:1},
+{name:'宝安',value:1},
+{name:'龙岗',value:281},
+{name:'光明',value:1},
+{name:'坪山',value:1},
+{name:'龙华',value:43},
+{name:'大鹏',value:432},
+{name:'广州方向',value:1},
+{name:'香港方向',value:1}
+                	                ]
+                	            }
+                	        },
+                	                      	        {
+                	            name: '盐田分片区（发生量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'沙头角片区'}, {name:'沙头角片区',value:131990}],
+[{name:'沙头角片区'}, {name:'后方陆域',value:13074}],
+[{name:'沙头角片区'}, {name:'梅沙片区',value:3408}],
+[{name:'沙头角片区'}, {name:'罗湖',value:25625}],
+[{name:'沙头角片区'}, {name:'福田',value:6174}],
+[{name:'沙头角片区'}, {name:'南山',value:1366}],
+[{name:'沙头角片区'}, {name:'宝安',value:118}],
+[{name:'沙头角片区'}, {name:'龙岗',value:624}],
+[{name:'沙头角片区'}, {name:'光明',value:17}],
+[{name:'沙头角片区'}, {name:'坪山',value:101}],
+[{name:'沙头角片区'}, {name:'龙华',value:67}],
+[{name:'沙头角片区'}, {name:'大鹏',value:67}],
+[{name:'沙头角片区'}, {name:'广州方向',value:17}],
+[{name:'沙头角片区'}, {name:'香港方向',value:236}],
+[{name:'后方陆域'}, {name:'沙头角片区',value:24905}],
+[{name:'后方陆域'}, {name:'后方陆域',value:120766}],
+[{name:'后方陆域'}, {name:'梅沙片区',value:6684}],
+[{name:'后方陆域'}, {name:'罗湖',value:27508}],
+[{name:'后方陆域'}, {name:'福田',value:2346}],
+[{name:'后方陆域'}, {name:'南山',value:289}],
+[{name:'后方陆域'}, {name:'宝安',value:129}],
+[{name:'后方陆域'}, {name:'龙岗',value:868}],
+[{name:'后方陆域'}, {name:'光明',value:32}],
+[{name:'后方陆域'}, {name:'坪山',value:1}],
+[{name:'后方陆域'}, {name:'龙华',value:96}],
+[{name:'后方陆域'}, {name:'大鹏',value:1}],
+[{name:'后方陆域'}, {name:'广州方向',value:1}],
+[{name:'后方陆域'}, {name:'香港方向',value:1}],
+[{name:'梅沙片区'}, {name:'沙头角片区',value:4382}],
+[{name:'梅沙片区'}, {name:'后方陆域',value:4534}],
+[{name:'梅沙片区'}, {name:'梅沙片区',value:22236}],
+[{name:'梅沙片区'}, {name:'罗湖',value:2310}],
+[{name:'梅沙片区'}, {name:'福田',value:367}],
+[{name:'梅沙片区'}, {name:'南山',value:1}],
+[{name:'梅沙片区'}, {name:'宝安',value:1}],
+[{name:'梅沙片区'}, {name:'龙岗',value:281}],
+[{name:'梅沙片区'}, {name:'光明',value:1}],
+[{name:'梅沙片区'}, {name:'坪山',value:1}],
+[{name:'梅沙片区'}, {name:'龙华',value:43}],
+[{name:'梅沙片区'}, {name:'大鹏',value:432}],
+[{name:'梅沙片区'}, {name:'广州方向',value:1}],
+[{name:'梅沙片区'}, {name:'香港方向',value:1}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'沙头角片区',value:131990},
+{name:'后方陆域',value:13074},
+{name:'梅沙片区',value:3408},
+{name:'罗湖',value:25625},
+{name:'福田',value:6174},
+{name:'南山',value:1366},
+{name:'宝安',value:118},
+{name:'龙岗',value:624},
+{name:'光明',value:17},
+{name:'坪山',value:101},
+{name:'龙华',value:67},
+{name:'大鹏',value:67},
+{name:'广州方向',value:17},
+{name:'香港方向',value:236},
+{name:'沙头角片区',value:24905},
+{name:'后方陆域',value:120766},
+{name:'梅沙片区',value:6684},
+{name:'罗湖',value:27508},
+{name:'福田',value:2346},
+{name:'南山',value:289},
+{name:'宝安',value:129},
+{name:'龙岗',value:868},
+{name:'光明',value:32},
+{name:'坪山',value:1},
+{name:'龙华',value:96},
+{name:'大鹏',value:1},
+{name:'广州方向',value:1},
+{name:'香港方向',value:1},
+{name:'沙头角片区',value:4382},
+{name:'后方陆域',value:4534},
+{name:'梅沙片区',value:22236},
+{name:'罗湖',value:2310},
+{name:'福田',value:367},
+{name:'南山',value:1},
+{name:'宝安',value:1},
+{name:'龙岗',value:281},
+{name:'光明',value:1},
+{name:'坪山',value:1},
+{name:'龙华',value:43},
+{name:'大鹏',value:432},
+{name:'广州方向',value:1},
+{name:'香港方向',value:1}
+                	                ]
+                	            }
+                	        },
+                	        
+                	        {
+                	            name: '沙头角片区（吸引量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'沙头角片区'}, {name:'沙头角片区',value:131990}],
+[{name:'后方陆域'}, {name:'沙头角片区',value:24905}],
+[{name:'梅沙片区'}, {name:'沙头角片区',value:4382}],
+[{name:'罗湖'}, {name:'沙头角片区',value:25440}],
+[{name:'福田'}, {name:'沙头角片区',value:6191}],
+[{name:'南山'}, {name:'沙头角片区',value:1366}],
+[{name:'宝安'}, {name:'沙头角片区',value:118}],
+[{name:'龙岗'}, {name:'沙头角片区',value:624}],
+[{name:'光明'}, {name:'沙头角片区',value:17}],
+[{name:'坪山'}, {name:'沙头角片区',value:101}],
+[{name:'龙华'}, {name:'沙头角片区',value:67}],
+[{name:'大鹏'}, {name:'沙头角片区',value:67}],
+[{name:'广州方向'}, {name:'沙头角片区',value:1}],
+[{name:'香港方向'}, {name:'沙头角片区',value:236}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'沙头角片区',value:131990},
+{name:'后方陆域',value:24905},
+{name:'梅沙片区',value:4382},
+{name:'罗湖',value:25440},
+{name:'福田',value:6191},
+{name:'南山',value:1366},
+{name:'宝安',value:118},
+{name:'龙岗',value:624},
+{name:'光明',value:17},
+{name:'坪山',value:101},
+{name:'龙华',value:67},
+{name:'大鹏',value:67},
+{name:'广州方向',value:1},
+{name:'香港方向',value:236}
+                	                ]
+                	            }
+                	        },
+                	        
+                	        {
+                	            name: '后方陆域（吸引量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'沙头角片区'}, {name:'后方陆域',value:13074}],
+[{name:'后方陆域'}, {name:'后方陆域',value:120766}],
+[{name:'梅沙片区'}, {name:'后方陆域',value:4534}],
+[{name:'罗湖'}, {name:'后方陆域',value:27508}],
+[{name:'福田'}, {name:'后方陆域',value:2378}],
+[{name:'南山'}, {name:'后方陆域',value:289}],
+[{name:'宝安'}, {name:'后方陆域',value:129}],
+[{name:'龙岗'}, {name:'后方陆域',value:868}],
+[{name:'光明'}, {name:'后方陆域',value:32}],
+[{name:'坪山'}, {name:'后方陆域',value:1}],
+[{name:'龙华'}, {name:'后方陆域',value:64}],
+[{name:'大鹏'}, {name:'后方陆域',value:1}],
+[{name:'广州方向'}, {name:'后方陆域',value:1}],
+[{name:'香港方向'}, {name:'后方陆域',value:1}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'沙头角片区',value:13074},
+{name:'后方陆域',value:120766},
+{name:'梅沙片区',value:4534},
+{name:'罗湖',value:27508},
+{name:'福田',value:2378},
+{name:'南山',value:289},
+{name:'宝安',value:129},
+{name:'龙岗',value:868},
+{name:'光明',value:32},
+{name:'坪山',value:1},
+{name:'龙华',value:64},
+{name:'大鹏',value:1},
+{name:'广州方向',value:1},
+{name:'香港方向',value:1}
+                	                ]
+                	            }
+                	        },
+                	        
+                	        {
+                	            name: '梅沙片区（吸引量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'沙头角片区'}, {name:'梅沙片区',value:3408}],
+[{name:'后方陆域'}, {name:'梅沙片区',value:6684}],
+[{name:'梅沙片区'}, {name:'梅沙片区',value:22236}],
+[{name:'罗湖'}, {name:'梅沙片区',value:2310}],
+[{name:'福田'}, {name:'梅沙片区',value:367}],
+[{name:'南山'}, {name:'梅沙片区',value:1}],
+[{name:'宝安'}, {name:'梅沙片区',value:22}],
+[{name:'龙岗'}, {name:'梅沙片区',value:281}],
+[{name:'光明'}, {name:'梅沙片区',value:1}],
+[{name:'坪山'}, {name:'梅沙片区',value:1}],
+[{name:'龙华'}, {name:'梅沙片区',value:43}],
+[{name:'大鹏'}, {name:'梅沙片区',value:410}],
+[{name:'广州方向'}, {name:'梅沙片区',value:22}],
+[{name:'香港方向'}, {name:'梅沙片区',value:1}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'沙头角片区',value:3408},
+{name:'后方陆域',value:6684},
+{name:'梅沙片区',value:22236},
+{name:'罗湖',value:2310},
+{name:'福田',value:367},
+{name:'南山',value:1},
+{name:'宝安',value:22},
+{name:'龙岗',value:281},
+{name:'光明',value:1},
+{name:'坪山',value:1},
+{name:'龙华',value:43},
+{name:'大鹏',value:410},
+{name:'广州方向',value:22},
+{name:'香港方向',value:1}
+                	                ]
+                	            }
+                	        },
+                	        
+                	         {
+                	            name: '盐田分片区（吸引量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'沙头角片区'}, {name:'沙头角片区',value:131990}],
+[{name:'后方陆域'}, {name:'沙头角片区',value:24905}],
+[{name:'梅沙片区'}, {name:'沙头角片区',value:4382}],
+[{name:'罗湖'}, {name:'沙头角片区',value:25440}],
+[{name:'福田'}, {name:'沙头角片区',value:6191}],
+[{name:'南山'}, {name:'沙头角片区',value:1366}],
+[{name:'宝安'}, {name:'沙头角片区',value:118}],
+[{name:'龙岗'}, {name:'沙头角片区',value:624}],
+[{name:'光明'}, {name:'沙头角片区',value:17}],
+[{name:'坪山'}, {name:'沙头角片区',value:101}],
+[{name:'龙华'}, {name:'沙头角片区',value:67}],
+[{name:'大鹏'}, {name:'沙头角片区',value:67}],
+[{name:'广州方向'}, {name:'沙头角片区',value:1}],
+[{name:'香港方向'}, {name:'沙头角片区',value:236}],
+[{name:'沙头角片区'}, {name:'后方陆域',value:13074}],
+[{name:'后方陆域'}, {name:'后方陆域',value:120766}],
+[{name:'梅沙片区'}, {name:'后方陆域',value:4534}],
+[{name:'罗湖'}, {name:'后方陆域',value:27508}],
+[{name:'福田'}, {name:'后方陆域',value:2378}],
+[{name:'南山'}, {name:'后方陆域',value:289}],
+[{name:'宝安'}, {name:'后方陆域',value:129}],
+[{name:'龙岗'}, {name:'后方陆域',value:868}],
+[{name:'光明'}, {name:'后方陆域',value:32}],
+[{name:'坪山'}, {name:'后方陆域',value:1}],
+[{name:'龙华'}, {name:'后方陆域',value:64}],
+[{name:'大鹏'}, {name:'后方陆域',value:1}],
+[{name:'广州方向'}, {name:'后方陆域',value:1}],
+[{name:'香港方向'}, {name:'后方陆域',value:1}],
+[{name:'沙头角片区'}, {name:'梅沙片区',value:3408}],
+[{name:'后方陆域'}, {name:'梅沙片区',value:6684}],
+[{name:'梅沙片区'}, {name:'梅沙片区',value:22236}],
+[{name:'罗湖'}, {name:'梅沙片区',value:2310}],
+[{name:'福田'}, {name:'梅沙片区',value:367}],
+[{name:'南山'}, {name:'梅沙片区',value:1}],
+[{name:'宝安'}, {name:'梅沙片区',value:22}],
+[{name:'龙岗'}, {name:'梅沙片区',value:281}],
+[{name:'光明'}, {name:'梅沙片区',value:1}],
+[{name:'坪山'}, {name:'梅沙片区',value:1}],
+[{name:'龙华'}, {name:'梅沙片区',value:43}],
+[{name:'大鹏'}, {name:'梅沙片区',value:410}],
+[{name:'广州方向'}, {name:'梅沙片区',value:22}],
+[{name:'香港方向'}, {name:'梅沙片区',value:1}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'沙头角片区',value:131990},
+{name:'后方陆域',value:24905},
+{name:'梅沙片区',value:4382},
+{name:'罗湖',value:25440},
+{name:'福田',value:6191},
+{name:'南山',value:1366},
+{name:'宝安',value:118},
+{name:'龙岗',value:624},
+{name:'光明',value:17},
+{name:'坪山',value:101},
+{name:'龙华',value:67},
+{name:'大鹏',value:67},
+{name:'广州方向',value:1},
+{name:'香港方向',value:236},
+{name:'沙头角片区',value:13074},
+{name:'后方陆域',value:120766},
+{name:'梅沙片区',value:4534},
+{name:'罗湖',value:27508},
+{name:'福田',value:2378},
+{name:'南山',value:289},
+{name:'宝安',value:129},
+{name:'龙岗',value:868},
+{name:'光明',value:32},
+{name:'坪山',value:1},
+{name:'龙华',value:64},
+{name:'大鹏',value:1},
+{name:'广州方向',value:1},
+{name:'香港方向',value:1},
+{name:'沙头角片区',value:3408},
+{name:'后方陆域',value:6684},
+{name:'梅沙片区',value:22236},
+{name:'罗湖',value:2310},
+{name:'福田',value:367},
+{name:'南山',value:1},
+{name:'宝安',value:22},
+{name:'龙岗',value:281},
+{name:'光明',value:1},
+{name:'坪山',value:1},
+{name:'龙华',value:43},
+{name:'大鹏',value:410},
+{name:'广州方向',value:22},
+{name:'香港方向',value:1}
+                	                ]
+                	            }
+                	        },
+                	        
+                	       
+                	       
+                	       {
+                	            name: '盐田（发生量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'盐田'}, {name:'盐田',value:331979}],
+[{name:'盐田'}, {name:'罗湖',value:55443}],
+[{name:'盐田'}, {name:'福田',value:8887}],
+[{name:'盐田'}, {name:'南山',value:1655}],
+[{name:'盐田'}, {name:'宝安',value:247}],
+[{name:'盐田'}, {name:'龙岗',value:1773}],
+[{name:'盐田'}, {name:'光明',value:49}],
+[{name:'盐田'}, {name:'坪山',value:101}],
+[{name:'盐田'}, {name:'龙华',value:206}],
+[{name:'盐田'}, {name:'大鹏',value:499}],
+[{name:'盐田'}, {name:'广州方向',value:17}],
+[{name:'盐田'}, {name:'香港方向',value:236}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'盐田',value:331979},
+{name:'罗湖',value:55443},
+{name:'福田',value:8887},
+{name:'南山',value:1655},
+{name:'宝安',value:247},
+{name:'龙岗',value:1773},
+{name:'光明',value:49},
+{name:'坪山',value:101},
+{name:'龙华',value:206},
+{name:'大鹏',value:499},
+{name:'广州方向',value:17},
+{name:'香港方向',value:236}
+                	                ]
+                	            }
+                	        },
+                	       
+                	       
+                	       {
+                	            name: '盐田（吸引量）',
+                	            type: 'map',
+                	            mapType: 'Shenzhen_Admin',
+                	            data:[],
+                	            markLine : {
+                	                smooth:true,
+                	                effect : {
+                	                    show: true,
+                	                    scaleSize: 1,
+                	                    period: 30,
+                	                    color: '#fff',
+                	                   shadowBlur: 10
+                	               },
+                	              itemStyle : {
+                	                    normal: {
+                	                        borderWidth:1,
+                	                        lineStyle: {
+                	                            type: 'solid',
+                	                            shadowBlur: 10
+                	                       },
+                	                       
+                	                        label: {
+											show: true,
+											formatter: null,
+											textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}
+											}
+                	                    }
+                	                },
+                	                
+                	                data : [
+[{name:'盐田'}, {name:'盐田',value:331979}],
+[{name:'罗湖'}, {name:'盐田',value:55258}],
+[{name:'福田'}, {name:'盐田',value:8936}],
+[{name:'南山'}, {name:'盐田',value:1655}],
+[{name:'宝安'}, {name:'盐田',value:269}],
+[{name:'龙岗'}, {name:'盐田',value:1773}],
+[{name:'光明'}, {name:'盐田',value:49}],
+[{name:'坪山'}, {name:'盐田',value:101}],
+[{name:'龙华'}, {name:'盐田',value:174}],
+[{name:'大鹏'}, {name:'盐田',value:477}],
+[{name:'广州方向'}, {name:'盐田',value:22}],
+[{name:'香港方向'}, {name:'盐田',value:236}]
+                	                ]
+                	            },
+                	            markPoint : {
+                	                symbol:'emptyCircle',
+                	                symbolSize : function (v){
+                	                    return 10 + v/3000
+                	                },
+                	                effect : {
+                	                    show: true,
+                	                    shadowBlur : 0
+                	                },
+                	                itemStyle:{
+                	                    normal:{
+                	                        label:{show:false}
+                	                    },
+                	                    emphasis: {
+                	                        label:{position:'top',
+                	                        textStyle: {
+  													fontWeight : 'normal',
+													fontSize : 20
+  												}}
+                	                    }
+                	                },
+                	                data : [
+{name:'盐田',value:331979},
+{name:'罗湖',value:55258},
+{name:'福田',value:8936},
+{name:'南山',value:1655},
+{name:'宝安',value:269},
+{name:'龙岗',value:1773},
+{name:'光明',value:49},
+{name:'坪山',value:101},
+{name:'龙华',value:174},
+{name:'大鹏',value:477},
+{name:'广州方向',value:22},
+{name:'香港方向',value:236}
+                	                ]
+                	            }
+                	        },
+                	       
+                	        
+                	    ]
+                	};
+                	                    
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        );
+    </script>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="footer">
+    <div class="footbox">
+      <h2>Friend Link</h2>
+      <ul>
+       <a class="" id="STarSS" href="http://spatial.szu.edu.cn">www.spatial.szu.edu.cn</a>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2></br></h2>
+      <ul>
+        <li><a href="#">www.lmars.whu.edu.cn</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2></br></h2>
+      <ul>
+        <li><a href="#">www.renren.com</a></li>
+      </ul>
+    </div>
+    <div class="footbox">
+      <h2></br></h2>
+      <ul>
+        <li><a href="#">www.facebook.com</a></li>
+      </ul>
+    </div>
+    <div class="footbox last">      
+      <h2></br></h2>      
+      <ul>
+        <li><a href="#">www.google.com</a></li>
+        <!--<li class="last"><a href="#">www.baidu.com</a></li>-->
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col5">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2014-2018 - All Rights Reserved - <a href="#">Shenzhen Nauti Idea Digital Tech. Co., Ltd. 深圳诺地思维数字科技有限公司</a></p>
+    <p class="fl_right"> <a href="" title=""> </a></p>
+    
+  </div>
+    <div id="copyright">
+    <p class="fl_left">粤ICP备15028247-1号 </a></p>
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>
