@@ -115,58 +115,158 @@ function setupLayers() {
     addBaseLayerOption(
             'Bing Maps Aerial',
             undefined); // the current base layer
-    addBaseLayerOption(
-            'Bing Maps Road',
-            new Cesium.BingMapsImageryProvider({
-                url: '//dev.virtualearth.net',
-                mapStyle: Cesium.BingMapsStyle.ROAD
-            }));
-    addBaseLayerOption(
-            'ArcGIS World Street Maps',
-            new Cesium.ArcGisMapServerImageryProvider({
-                url : '//server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
-            }));
-    addBaseLayerOption(
-            'OpenStreetMaps',
-            new Cesium.OpenStreetMapImageryProvider());
-    addBaseLayerOption(
-            'MapQuest OpenStreetMaps',
-            new Cesium.OpenStreetMapImageryProvider({
-                url: '//otile1-s.mqcdn.com/tiles/1.0.0/osm/'
-            }));
-    addBaseLayerOption(
-            'Stamen Maps',
-            new Cesium.OpenStreetMapImageryProvider({
-                url: '//stamen-tiles.a.ssl.fastly.net/watercolor/',
-                fileExtension: 'jpg',
-                credit: 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.'
-            }));
-    addBaseLayerOption(
-            'Natural Earth II (local)',
-            new Cesium.TileMapServiceImageryProvider({
-                url : require.toUrl('Assets/Textures/NaturalEarthII')
-            }));
+    	    
+					addBaseLayerOption(
+           	            'Tianditu Maps Aerial',
+           	            new Cesium.WebMapTileServiceImageryProvider({    	            
+           	            	url: 'http://t0.tianditu.com/img_w/wmts',
+           	                layer: 'img',
+           	                style: 'default',
+           	                format: 'tiles',
+           	                tileMatrixSetID: 'w'
+           	            }));		
+            				
+            		addBaseLayerOption(
+    	            	'Global Land Cover Maps(2014)_All Classes',
+    	            new Cesium.WebMapTileServiceImageryProvider({    	            
+    	            	url: 'http://glcdata.tianditu.com/glc_w/wmts',
+    	                layer: 'glc',
+    	                style: 'default',
+    	                format: 'tiles',
+    	                tileMatrixSetID: 'w'
+    	            }));
+    
 
-    addBaseLayerOption(
-            'USGS Shaded Relief (via WMTS)',
-            new Cesium.WebMapTileServiceImageryProvider({
-                url : 'http://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/WMTS',
-                layer : 'USGSShadedReliefOnly',
-                style : 'default',
-                format : 'image/jpeg',
-                tileMatrixSetID : 'default028mm',
-                maximumLevel: 19,
-                credit : new Cesium.Credit('U. S. Geological Survey')
-            }));
+    
+            		//Artificial Surfaces
+            		addBaseLayerOption(
+    	            	'Global Land Cover Maps(2014)_Artificial Surfaces',
+    	            new Cesium.WebMapTileServiceImageryProvider({    	            
+    	            	url: 'http://glcdata.tianditu.com/lci_w/wmts',
+    	                layer: 'lci',
+    	                style: 'default',
+    	                format: 'tiles',
+    	                tileMatrixSetID: 'w'
+    	            }));
 
-    addBaseLayerOption(
-            'TencentQQPositioning Maps (20160304-20160310)',
+            		//Water Bodies
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Water Bodies',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lcr_w/wmts',
+            	                layer: 'lcr',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+            		
+            		//Wetland
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Wetland',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lcw_w/wmts',
+            	                layer: 'lcw',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+ 
+            		//Cultivated Land
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Cultivated Land',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lcc_w/wmts',
+            	                layer: 'lcc',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+
+            		
+            		//Forest
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Forest',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lcf_w/wmts',
+            	                layer: 'lcf',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+            		
+               		//Grass
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Grass',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lcg_w/wmts',
+            	                layer: 'lcg',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+            		
+               		//Permanent Snow and Ice
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Permanent Snow and Ice',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lcp_w/wmts',
+            	                layer: 'lcp',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+ 
+               		//Permanent Tundra
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Tundra',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lct_w/wmts',
+            	                layer: 'lct',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+               		
+               		//Shrublands
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Shrublands',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lcs_w/wmts',
+            	                layer: 'lcs',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+               		
+               		//Bareland
+            		addBaseLayerOption(
+            	            'Global Land Cover Maps(2014)_Bareland',
+            	            new Cesium.WebMapTileServiceImageryProvider({    	            
+            	            	url: 'http://glcdata.tianditu.com/lcb_w/wmts',
+            	                layer: 'lcb',
+            	                style: 'default',
+            	                format: 'tiles',
+            	                tileMatrixSetID: 'w'
+            	            }));
+               		
+
+               		
+    	    addBaseLayerOption(
+	            'World POP Maps (2010)',
+	            new Cesium.WebMapTileServiceImageryProvider({
+	                url : 'http://localhost:6080/arcgis/rest/services/World_Pop_2010/ImageServer/WMTS',
+	                layer : 'World_Pop_2010',
+	                style : 'default',
+	                format : 'image/png',
+	                tileMatrixSetID : 'default028mm',
+	                maximumLevel: 19
+	            }));
+
+    	addBaseLayerOption(
+            'Tencent QQ Positioning Maps (20160304-20160310)',
             new Cesium.TileMapServiceImageryProvider({
                 url : require.toUrl('Assets/Textures/TencentQQPositioning_20160304_20160310')
             }));
-    
-    // Create the additional layers
-    //
 
     
     addAdditionalLayerOption(
@@ -178,6 +278,57 @@ function setupLayers() {
 }
 
 function other(){
+       
+        
+    	addBaseLayerOption(
+            'World GDP Map (2010)',
+            new Cesium.TileMapServiceImageryProvider({
+                url : require.toUrl('Assets/Textures/WorldGDP2010')
+            }));
+	   addBaseLayerOption(
+	            'Bing Maps Road',
+	            new Cesium.BingMapsImageryProvider({
+	                url: '//dev.virtualearth.net',
+	                mapStyle: Cesium.BingMapsStyle.ROAD
+	            }));
+	    addBaseLayerOption(
+	            'ArcGIS World Street Maps',
+	            new Cesium.ArcGisMapServerImageryProvider({
+	                url : '//server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
+	            }));
+	    addBaseLayerOption(
+	            'OpenStreetMaps',
+	            new Cesium.OpenStreetMapImageryProvider());
+	    addBaseLayerOption(
+	            'MapQuest OpenStreetMaps',
+	            new Cesium.OpenStreetMapImageryProvider({
+	                url: '//otile1-s.mqcdn.com/tiles/1.0.0/osm/'
+	            }));
+	    addBaseLayerOption(
+	            'Stamen Maps',
+	            new Cesium.OpenStreetMapImageryProvider({
+	                url: '//stamen-tiles.a.ssl.fastly.net/watercolor/',
+	                fileExtension: 'jpg',
+	                credit: 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.'
+	            }));
+	    addBaseLayerOption(
+	            'Natural Earth II (local)',
+	            new Cesium.TileMapServiceImageryProvider({
+	                url : require.toUrl('Assets/Textures/NaturalEarthII')
+	            }));
+
+	    addBaseLayerOption(
+	            'USGS Shaded Relief (via WMTS)',
+	            new Cesium.WebMapTileServiceImageryProvider({
+	                url : 'http://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/WMTS',
+	                layer : 'USGSShadedReliefOnly',
+	                style : 'default',
+	                format : 'image/jpeg',
+	                tileMatrixSetID : 'default028mm',
+	                maximumLevel: 19,
+	                credit : new Cesium.Credit('U. S. Geological Survey')
+	            }));
+	    
     addAdditionalLayerOption(
             'United States GOES Infrared',
             new Cesium.WebMapServiceImageryProvider({
